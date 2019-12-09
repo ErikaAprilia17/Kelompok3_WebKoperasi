@@ -1,0 +1,104 @@
+<!-- <?php if($this->session->flashdata('success')){ ?>
+  <script> 
+            Swal.fire(
+                'Berhasil!',
+                'Data Berhasil disimpan.',
+                'success'
+              )
+</script>
+<?php } ?>    -->
+
+<div class="container">
+  <div class="alert alert-success">
+    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+      </div>
+      <br>
+  <div class="content-wrapper">
+          <div class="page-header">
+           <ol class="breadcrumb" style="font-size: 25px">
+                <li class="breadcrumb-item" href="#" >Setting</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+            </ol> 
+          </div>
+          
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Update Data Koperasi</h4>
+                  <table class="table table-striped">
+ 
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <form class="form-sample" action="<?php echo base_url()?>admin/setting/identitas_koperasi/update" method="post">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"><b>Nama Koperasi</b></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="nama_koperasi" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"><b>Nama Pemimpin</b></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="nama_pemimpin" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"><b>Alamat</b></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="alamat" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"><b>No.Telpon/Hp</b></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="no_tlpon/hp" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"><b>Kota/Kabupaten</b></label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="kota/kabupaten"/>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"><b>Website</b></label>
+                          <div class="col-sm-9">                           
+                                <input type="text" class="form-control" name="websitw" />
+                              </label>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"><b>Email</b></label>
+                          <div class="col-sm-9">                           
+                                <input type="email" class="form-control" name="email" />
+                              </label>
+                            </div>
+                          </div>
+                          <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+
+                       </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+       

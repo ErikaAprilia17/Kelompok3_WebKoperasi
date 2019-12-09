@@ -1,0 +1,116 @@
+<?php if($this->session->flashdata('success_update')){ ?>
+  <script> 
+            Swal.fire(
+                'Berhasil!',
+                'Data Berhasil disimpan.',
+                'success'
+              )
+</script>
+<?php } ?>   
+
+
+  <div class="content-wrapper">
+          <div class="page-header">
+           <ol class="breadcrumb" style="font-size: 25px">
+                <li class="breadcrumb-item" href="#" >Setting</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+            </ol> 
+          </div>
+          
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Biaya dan Administrasi</h4>
+                  <table class="table table-striped">
+ 
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <form class="form-sample" action="<?php echo base_url()?>admin/setting/suku_bunga/update" method="post">
+                    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  
+                 <div class="form-group">
+                    <label for="tipe_pinjaman_bunga"><b>Tipe Pinjaman Bunga</b></label>
+                      <select class="form-control" id="tipe_pinjaman_bunga" name="tipe_pinjaman_bunga">
+                      		 <?php
+                        if ($suku_bunga->tipe_pinjaman_bunga == 'A:: Persen Bunga dikalikan angsuran Bulan') {
+                        			?>
+                        		}
+                        <option selected=""><b>A:: Persen Bunga dikalikan angsuran Bulan</b></option>
+                       	<option><b>B:: Persen Bunga dikalikan total pinjaman</b></option>
+
+                      			 <?php }else{ ?>
+                        <option ><b>A:: Persen Bunga dikalikan angsuran Bulan</b></option>
+                        <option selected=""><b>B:: Persen Bunga dikalikan total pinjaman</b></optio>   		<?php } ?>
+                        </select>
+                      </div>
+
+                      <form class="forms-sample">
+                    		<div class="form-group">
+                      		<label for="suku_bunga_pinjaman"><b>Suku Bunga Pinjaman (%)</b></label>
+                      			<input type="text" class="form-control" id="suku_bunga_pinjaman" name="suku_bunga_pinjaman" value="<?php echo $suku_bunga->suku_bunga_pinjaman ?>"/>
+                    		</div>
+
+                    <div class="form-group">
+                      <label for="biaya_administrasi"><b>Biaya Administrasi (Rp)</b></label>
+                      <input type="text" class="form-control" id="biaya_administrasi" name="biaya_administrasi" value="<?php echo $suku_bunga->biaya_administrasi ?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="biaya_denda"><b>Biaya Denda (Rp)</b></label>
+                      <input type="text" class="form-control" id="biaya_denda" name="biaya_denda" value="<?php echo $suku_bunga->biaya_denda ?>"/>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="tempo_tanggal_pembayaran"><b>Tempo Tanggal Pembayaran</b></label>
+                      <input type="text" class="form-control" id="tempo_tanggal_pembayaran" name="tempo_tanggal_pembayaran" value="<?php echo $suku_bunga->tempo_tanggal_pembayaran?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="dana_cadangan"><b>Dana Cadangan (%)</b></label>
+                      <input type="text" class="form-control" id="dana_cadangan" name="dana_cadangan" value="<?php echo $suku_bunga->dana_cadangan ?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="jasa_anggota"><b>Jasa Anggota</b></label>
+                      <input type="text" class="form-control" id="jasa_anggota" name="jasa_anggota" value="<?php echo $suku_bunga->jasa_anggota ?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="dana_pengurus"><b>Dana Pengurus (%)</b></label>
+                      <input type="text" class="form-control" id="dana_pengurus" name="dana_pengurus" value="<?php echo $suku_bunga->dana_pengurus ?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="dana_karyawan"><b>Dana Karyawan (%)</b></label>
+                      <input type="text" class="form-control" id="dana_karyawan" name="dana_karyawan"value="<?php echo $suku_bunga->dana_karyawan ?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="dana_pendidikan"><b>Dana Pendidikan (%)</b></label>
+                      <input type="text" class="form-control" id="dana_pendidikan" name="dana_pendidikan" value="<?php echo $suku_bunga->dana_pendidikan ?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="dana_sosial"><b>Dana Sosial (%)</b></label>
+                      <input type="text" class="form-control" id="dana_sosial" name="dana_sosial" value="<?php echo $suku_bunga->dana_sosial ?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="jasa_usaha"><b>Jasa Usaha (%)</b></label>
+                      <input type="text" class="form-control" id="jasa_usaha" name="jasa_usaha" value="<?php echo $suku_bunga->jasa_usaha ?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="jasa_modal_anggota"><b>Jasa Modal Anggota (%)</b></label>
+                      <input type="text" class="form-control" id="jasa_modal_anggota" name="jasa_modal_anggota" value="<?php echo $suku_bunga->jasa_modal_anggota ?>"/>>
+                    </div><div class="form-group">
+                      <label for="pajak_PPh"><b>Pajak PPh (%)</b></label>
+                      <input type="text" class="form-control" id="pajak_PPh" name="pajak_PPh" value="<?php echo $suku_bunga->pajak_PPh ?>"/>
+                    </div>
+                    					<button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
+                     </form> 
+                       
+                          
+
+                       
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->

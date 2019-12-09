@@ -1,0 +1,105 @@
+<div class="content-wrapper">
+   <div class="page-header">
+          				<h3 class="page-title">
+              			Edit Setoran Tunai
+            			</h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/simpanan/setoran_tunai">Setoran Tunai</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Setoran Tunai</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                  <form class="forms-sample" action="<?php echo base_url()?>admin/simpanan/setoran_tunai/update/" method="post">
+                    <input type="hidden" class="form-control" name="id" value="<?= $setoran->id?>">
+                    <div class="form-group">
+                      <label for="tgl_transaksi"><b>Tanggal Transaksi</b></label>
+                      <input type="date" class="form-control" name="tgl_transaksi" id="tgl_transaksi" placeholder="tgl_transaksi" value="<?= $setoran->tgl_transaksi?>">
+                    </div>
+                <p><b>Identitas Penyetor </b></p>
+                      <div class="form-group">
+                      <label for="nama_penyetor">Nama Penyetor</label>
+                      <input type="text" class="form-control" name="nama_penyetor" id="nama_penyetor" placeholder="nama_penyetor" value="<?= $setoran->nama_penyetor?>" >
+                    </div>
+                         <div class="form-group">
+                      <label for="no_identitas">No.Identitas</label>
+                      <input type="text" class="form-control" name="no_identitas" id="no_identitas" placeholder="no_identitas" value="<?= $setoran->no_identitas?>" >
+                    </div>
+                    <div class="form-group">
+                      <label for="alamat">Alamat</label>
+                      <textarea class="form-control" rows="5" cols="50" name="alamat" value="<?= $setoran->alamat?>"></textarea>
+                   </div>
+                   <p><b>Identitas Penerima</b></p>
+                    <div class="form-group">
+                      <label for="nama_anggota"><b>Nama Anggota</b></label>
+                      <select name="nama_anggota" id="id_anggota" class="form-control" onchange='changeValue(this.value)' required>
+                      <?php foreach($id_anggota as $data){ ?>
+                          <option value="<?= $data->id_anggota ?>"><?= $data->nama_anggota ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="dept"><b>Departemen</b></label>
+                      <select class="form-control" id="dept" name="id_departemen">
+                        <?php foreach($departemen as $data){ ?>
+                          <option value="<?= $data->id ?>"><?= $data->departemen ?></option>
+                        <?php } ?>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="jenis_simpanan"><b>Jenis Simpanan</b></label>
+                        <select class="form-control" id="jenis_simpanan" name="jenis_simpanan" value="<?= $setoran->jenis_simpanan?>">
+                          <option>Simpanan Wajib</option>
+                          <option>Simpanan Pokok</option>
+                          <option>Simpanan Sukarela</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                      <label for="jumlah"><b>Jumlah Simpanan</b></label>
+                      <input type="text" class="form-control" name="jumlah" id="rupiah" placeholder="jumlah" value="<?= $setoran->Jumlah?>"> 
+                    </div>
+                    <div class="form-group">
+                      <label for="use"><b>User</b></label>
+                      <select class="form-control" id="user" name="user" value="<?= $setoran->user?>">
+                          <option>Admin</option>
+                          <option>Member</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <a href="<?php echo base_url()?>admin/simpanan/setoran_tunai" class="btn btn-light">Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+              <script type="text/javascript">
+		
+		var rupiah = document.getElementById('rupiah');
+		rupiah.addEventListener('keyup', function(e){
+			// tambahkan 'Rp.' pada saat form di ketik
+			// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+			rupiah.value = formatRupiah(this.value, 'Rp. ');
+		});
+ 
+		/* Fungsi formatRupiah */
+		function formatRupiah(angka, prefix){
+			var number_string = angka.replace(/[^,\d]/g, '').toString(),
+			split   		= number_string.split(','),
+			sisa     		= split[0].length % 3,
+			rupiah     		= split[0].substr(0, sisa),
+			ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+ 
+			// tambahkan titik jika yang di input sudah menjadi angka ribuan
+			if(ribuan){
+				separator = sisa ? '.' : '';
+				rupiah += separator + ribuan.join('.');
+			}
+ 
+			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+		}
+	</script>

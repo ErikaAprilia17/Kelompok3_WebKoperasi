@@ -1,0 +1,63 @@
+<?php
+class Data_pengajuan extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Data Pengajuan',
+			'page' => 'member/pengajuan_pinjaman/v_data_pengajuan',
+			'data_pengajuan' => $this->db->select('a.*,b.lama_angsuran')
+										->from('pengajuan a')
+										->join('lama_angsuran b','a.id_angsuran=b.lama_angsuran')
+										->get()->result(),
+			
+		);
+		$this->load->view('member/layout/template',$data);
+	}
+	function tambah(){
+		$data = array(
+			'title' => 'Tambah Data Pengajuan Baru',
+			'page' => 'member/pengajuan_pinjaman/v_tambah_pengajuan',
+			'lama_angsuran' => $this->db->get('lama_angsuran')->result(),
+			
+		);
+		$this->load->view('member/layout/template',$data);
+
+	}
+	function insert(){
+		$tanggal = $this->input->post('tanggal');
+		$jenis = $this->input->post('jenis');
+		$nominal = $this->input->post('nominal');
+		$jumlah_angsur = $this->input->post('id_angsuran');
+		$keterangan = $this->input->post('keterangan');		
+		$tanggal_update = $this->input->post('tanggal_update');
+		$status = $this->input->post('status');
+		$tanggal = date('Y-m-d');
+		$tanggal_update = date( 'Y-m-d');
+		$status = 'baru';
+
+		$data = array(
+			'tanggal' => $tanggal,
+			'jenis' => $jenis,
+			'nominal' => $nominal,
+			'id_angsuran' => $jumlah_angsur,
+			'keterangan' => $keterangan,
+			'tanggal_update' => $tanggal_update,
+			'status' => $status,
+			
+		);
+
+		$this->db->insert('pengajuan',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('member/pengajuan_pinjaman/data_pengajuan');
+		
+	}
+
+	 function batal($id){
+ 
+  		$this->db->where('id', $id);
+  		$this->db->delete('pengajuan');
+  		$this->session->set_flashdata('success_batal','a'); 
+  		redirect('member/pengajuan_pinjaman/data_pengajuan');
+ }
+}

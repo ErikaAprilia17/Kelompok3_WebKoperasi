@@ -1,0 +1,78 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Edit Data Transfer
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/transaksi_kas/transfer">Transaksi Transfer Kas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                   <form class="forms-sample" action="<?php echo base_url()?>admin/transaksi_kas/transfer/update" method="post">
+                    <input type="hidden" class="form-control" name="id" value="<?= $data_transfer->id?>">
+                    <div class="form-group">
+                      <label for="kode_transaksi"><b>Kode Transaksi</b></label>
+                      <input type="text" class="form-control" name="kode_transaksi" id="kode_transaksi" placeholder="Kode Transaksi" value="<?= $data_transfer->kode_transaksi?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="tanggal_transaksi"><b>Tanggal Transaksi</b></label>
+                      <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" value="<?= $data_transfer->tanggal_transaksi?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="uraian"><b>Uraian</b></label>
+                      <input type="text" class="form-control" name="uraian" id="uraian" placeholder="Uraian" value="<?= $data_transfer->uraian?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="jumlah"><b>Jumlah</b></label>
+                      <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah" value="<?= $data_transfer->jumlah?>">
+                    </div>
+                   <div class="form-group">
+                      <label for="untuk_kas"><b>Dari Kas</b></label>
+                        <select class="form-control" id="untuk_kas" name="id_dari_kas">
+                        <?php foreach($data_kas as $data){ ?>
+                            <option <?php if ($data_transfer->id == $data_kas->nama_kas) { echo "selected";} ?>>
+                              <?= $data_kas->nama_kas ?>
+                            </option>
+
+                         <?php } ?>
+                         </select>
+                      </div>
+
+                    <div class="form-group">
+                      <label for="untuk_kas"><b>Untuk Kas</b></label>
+                        <select class="form-control" id="untuk_kas" name="untuk_kas">
+                       <?php foreach($data_kas as $data_kas){ ?>
+                            <option <?php if ($data_transfer->id == $data_kas->nama_kas) { echo "selected";} ?>>
+                              <?= $data_kas->nama_kas ?>
+                            </option>
+
+                         <?php } ?>
+                         </select>
+                      </div>
+                   <div class="form-group">
+                      <label for="user"><b>User</b></label>
+                        <select class="form-control" id="user" name="user" value="<?= $data_pemasukan->user ?>">
+                        <?php
+                            if($data_pemasukan->user == 'Admin'){
+                        ?>
+                          <option selected="">Admin</option>
+                          <option>Anggota</option>
+                        <?php }else{ ?>
+                            <option>Admin</option>
+                            <option selected="">Anggota</option>
+                            <?php } ?>
+                        </select>
+                      </div>
+                    <button type="submit" class="btn btn-gradient-primary btn-icon-text"><i class="mdi mdi-file-check btn-icon-prepend"></i>Submit</button>
+                    <a href="<?php echo base_url()?>admin/transaksi_kas/transfer" class="btn btn-gradient-danger btn-icon-text"><i class="mdi mdi-close-circle btn-icon-prepend"></i>Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            

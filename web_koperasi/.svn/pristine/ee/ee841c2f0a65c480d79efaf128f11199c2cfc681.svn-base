@@ -1,0 +1,17 @@
+<?php
+class kas_anggota extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Kas Anggota',
+			'page' => 'admin/laporan/v_kas_anggota',
+			'data_kas' => $this->db->select('a.*,b.username,b.nama_anggota,b.jenis_kelamin,b.jabatan,b.departemen,b.alamat,b.no_telpon')
+									->from('kas_anggota a')
+									->join('data_anggota b','a.id_anggota=b.id_anggota')
+									->get()->result(),
+		);
+		$this->load->view('admin/layout/template',$data);
+		
+	}
+}

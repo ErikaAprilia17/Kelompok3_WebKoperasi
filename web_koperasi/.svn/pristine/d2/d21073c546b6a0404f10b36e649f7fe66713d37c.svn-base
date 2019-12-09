@@ -1,0 +1,59 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+             Data Pinjaman Anggota
+            </h3>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="<?php echo base_url()?>admin/pinjaman/data_pinjaman/tambah" button type="button" class="btn btn-primary" >
+                        <i class="mdi mdi-plus-circle"></i>
+                         </a>
+                      </button>
+                        </div> 
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Kode </th>
+                        <th>Tanggal Pinjaman</th>
+                        <th>Nama Anggota </th>
+                        <th>Hitungan</th>
+                        <th>Total Tagihan</th>
+                        <th>Lunas </th>
+                        <th>User </th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                           $id = 1;
+                          foreach($data_pinjam as $data_pinjaman){ 
+                                        ?>
+                              <tr>
+                          <td><?php echo $id++ ?></td>
+                          <td><?php echo $data_pinjaman->kode?></td>
+                          <td><?php echo $data_pinjaman->tanggal_pinjaman ?></td>
+                          <td><?php echo $data_pinjaman->nama_anggota ?></td>
+                          <td><?php echo $data_pinjaman->hitungan ?></td>
+                          <td><?php echo $data_pinjaman->total_tagihan ?></td>
+                          <td><?php echo $data_pinjaman->lunas ?></td>
+                          <td><?php echo $data_pinjaman->user ?></td>
+                          <td><?php echo anchor('admin/pinjaman/data_pinjaman/edit/'.$data_pinjaman->id,'Edit'); ?> 
+                              <?php echo anchor('admin/pinjaman/data_pinjaman/hapus'.$data_pinjaman->id,'Hapus'); 
+                                ?>
+                             </td>
+                            </tr>
+                          <?php } ?>
+                    </tbody>                               
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       

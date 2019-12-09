@@ -1,0 +1,87 @@
+ <?php if($this->session->flashdata('success')){ ?>
+  <script> 
+                Swal.fire(
+                  'Success . . . !',
+                  'Data Berhasil Disimpan',
+                  'Thank You'
+                )
+            </script>  
+              <?php } ?> 
+<?php if($this->session->flashdata('success_hapus')){ ?>
+    <script> 
+      Swal.fire(
+                'Success....!',
+                'Data Berhasil di Hapus',
+                'Thank You',
+              )
+</script>
+<?php } ?> 
+ <div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title"><center>
+             Jenis  Akun Transaksi
+            </center></h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Master Data</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                 <div class="box">
+                  <div class="box-header">
+                     <a href="<?php echo base_url()?>admin/master_data/jenis_akun/tambah" class="btn btn-gradient-primary btn-rounded btn-fw"><i class="mdi mdi-plus-circle-outline menu icon ">Tambah Akun</i>
+                     
+                </a>
+              </div> 
+                </div>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Kode Aktiva </th>
+                        <th>Jenis Transaksi</th>
+                        <th>Akun </th>
+                        <th>Pemasukan</th>
+                        <th>Pengeluaran</th>
+                        <th>Aktif </th>
+                        <th>Laba Rugi </th>
+                        <th>Opsi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                           $id = 1;
+                          foreach($data_akun as $jenis_akun){ 
+                                        ?>
+                              <tr>
+                          <td><?php echo $id++ ?></td>
+                          <td><?php echo $jenis_akun->kode_aktiva ?></td>
+                          <td><?php echo $jenis_akun->jenis_akun ?></td>
+                          <td><?php echo $jenis_akun->akun ?></td>
+                          <td><?php echo $jenis_akun->pemasukan ?></td>
+                          <td><?php echo $jenis_akun->pengeluaran ?></td>
+                          <td><?php echo $jenis_akun->aktif ?></td>
+                          <td><?php echo $jenis_akun->laba_rugi ?></td>
+          
+                              <td><i class="mdi mdi-pencil-box-outline menu-icon"><?php echo anchor('admin/master_data/jenis_akun/edit/'.$jenis_akun->id,'Edit'); ?> </td>
+                              <td>
+                              <i class="mdi mdi-delete menu-icon"><?php echo anchor('admin/master_data/jenis_akun/hapus/'.$jenis_akun->id,'Hapus'); 
+                             
+                                    ?>
+                            </i></td>
+                            </tr>
+
+                                                   <?php } ?>
+                    </tbody>                               
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+

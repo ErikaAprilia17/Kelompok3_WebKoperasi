@@ -1,0 +1,14 @@
+<?php
+class data_anggota extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Data Anggota',
+			'page' => 'admin/laporan/v_data_anggota',
+			'data_anggota' => $this->db->get('data_anggota')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+		}
+	}

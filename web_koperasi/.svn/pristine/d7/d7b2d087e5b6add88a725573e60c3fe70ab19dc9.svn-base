@@ -1,0 +1,19 @@
+<?php
+class kredit_macet extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Kredit Macet',
+			'page' => 'admin/laporan/v_kredit_macet',
+			'data_kredit_macet' => $this->db->select('a.*,b.nama_anggota,')
+									->from('kredit_macet a')
+									->join('data_anggota b','a.id_anggota=b.id_anggota')
+									->get()->result(),
+										
+			
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+		}
+	}

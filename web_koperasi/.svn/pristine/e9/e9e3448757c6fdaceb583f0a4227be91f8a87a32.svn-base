@@ -1,0 +1,53 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Tambah Pemasukan Tunai
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/transaksi_kas/pemasukan">Pemasukan Tunai</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                   <form class="forms-sample" action="<?php echo base_url()?>admin/transaksi_kas/pemasukan/insert" method="post">
+                    <input type="hidden" class="form-control" name="id">
+                    <div class="form-group">
+                      <label for="kode_transaksi"><b>Kode Transaksi</b></label>
+                      <input type="text" class="form-control" name="kode_transaksi" id="kode_transaksi" placeholder="Kode Transaksi">
+                    </div>
+                    <div class="form-group">
+                      <label for="tanggal_transaksi"><b>Tanggal Transaksi</b></label>
+                      <input type="text" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" placeholder="yyyy-mm-dd">
+                    </div>
+                    <div class="form-group">
+                      <label for="uraian"><b>Uraian</b></label>
+                      <input type="text" class="form-control" name="uraian" id="uraian" placeholder="Uraian">
+                    </div>
+                    <div class="form-group">
+                      <label for="untuk_kas"><b>Untuk Kas</b></label>
+                      <input type="text" class="form-control" name="untuk_kas" id="untuk_kas" placeholder="Untuk Kas">
+                    </div>
+                    <div class="form-group">
+                      <label for="dari_akun"><b>Dari Akun</b></label>
+                      <input type="text" class="form-control" name="dari_akun" id="dari_akun" placeholder="Dari Akun">
+                    </div>
+                    <div class="form-group">
+                      <label for="jumlah"><b>Jumlah</b></label>
+                      <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="jumlah">
+                    </div>
+                    <div class="form-group">
+                      <label for="user"><b>User</b></label>
+                      <input type="text" class="form-control" name="user" id="user" placeholder="User">
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <a href="<?php echo base_url()?>admin/master_data/jenis_akun" class="btn btn-light">Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            

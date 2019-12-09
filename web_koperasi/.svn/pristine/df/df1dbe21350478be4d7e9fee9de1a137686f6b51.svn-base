@@ -1,0 +1,57 @@
+<div class="content-wrapper">
+          <div class="page-header">
+           <ol class="breadcrumb" style="font-size: 25px">
+                <li class="breadcrumb-item" href="#" >Laporan</li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+                </ol></div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Data Anggota</h4>
+
+                  <a href="<?php echo base_url()?>admin/laporan/data_anggota/cetak" class="btn btn-gradient-primary btn-rounded btn-fw"><i class="mdi mdi-plus-circle-outline menu icon ">Download File</i></a>
+                                            
+                                
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Photo</th>
+                        <th>ID Anggota</th>
+                        <th>Nama Anggota</th>
+                        <th>Jenis Kelamin </th>
+                        <th>Alamat</th>
+                        <th>Jabatan </th>
+                        <th>Tanggal Registrasi</th>
+                        <th>Aktif Keanggotaan</th>
+                       
+                        
+                      </tr>
+                    </thead>
+                   <tbody>
+                      <?php 
+                          foreach($data_anggota as $data_anggota){ 
+                          	$no = 1;
+                                        ?>
+                              <tr>
+                          <td><img src="<?php echo base_url().'file/'.$data_anggota->photo?>"></td>
+                          <td><?php echo $no++ ?></td>
+                          
+                          <td><?php echo $data_anggota->nama_anggota ?></td>
+                          <td><?php echo $data_anggota->jenis_kelamin ?></td>
+                          <td><?php echo $data_anggota->alamat ?></td>
+                          <td><?php echo $data_anggota->jabatan ?></td>
+                          <td><?php echo $data_anggota->tgl_registrasi ?></td>
+                          <td><?php echo $data_anggota->aktif_keanggotaan ?></td>
+
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+
+
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

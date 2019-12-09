@@ -1,0 +1,90 @@
+<?php
+class saldo_kas extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Saldo Kas',
+			'page' => 'admin/laporan/v_saldo_kas',
+			'data_saldo' => $this->db->get('saldo_kas')->result(),
+			'bulan'=> $this->db->get('bulan')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+		}
+
+		 public function cetak(){
+<<<<<<< .mine
+    ob_start();
+    $data['data_saldo'] = $this->db->get('saldo_kas')->result();
+    $this->load->view('admin/laporan/printsaldo', $data);
+    $html = ob_get_contents();
+        ob_end_clean();
+        require_once('./assets/html2pdf/html2pdf.class.php');
+    $pdf = new HTML2PDF('P','A4','en');
+    $pdf->WriteHTML($html);
+    $pdf->Output('Data Anggota.pdf', 'D');
+  }
+
+}
+||||||| .r52
+    ob_start();
+    $data['data_saldo'] = $this->db->get('saldo_kas')->result();
+    $this->load->view('admin/laporan/printsaldo', $data);
+    $html = ob_get_contents();
+        ob_end_clean();
+||||||| .r40
+		//  public function cetak(){
+  //   ob_start();
+  //   $data['data_anggota'] = $this->db->get('data_anggota')->result();
+  //   $this->load->view('admin/laporan/print', $data);
+  //   $html = ob_get_contents();
+  //       ob_end_clean();
+=======
+		 public function cetak(){
+    		ob_start();
+    		$data['saldo_kas'] = $this->db->get('saldo_kas')->result();
+    		$this->load->view('admin/laporan/print', $data);
+    		$html = ob_get_contents();
+        	ob_end_clean();
+>>>>>>> .r44
+        
+<<<<<<< .mine
+        require_once('./assets/html2pdf/html2pdf.class.php');
+    $pdf = new HTML2PDF('P','A4','en');
+    $pdf->WriteHTML($html);
+    $pdf->Output('Data Anggota.pdf', 'D');
+  }
+||||||| .r40
+  //       require_once('./assets/html2pdf/html2pdf.class.php');
+  //   $pdf = new HTML2PDF('P','A4','en');
+  //   $pdf->WriteHTML($html);
+  //   $pdf->Output('Data Anggota.pdf', 'D');
+  // }
+=======
+        	require_once('./assets/html2pdf/html2pdf.class.php');
+    		$pdf = new HTML2PDF('P','A4','en');
+    		$pdf->WriteHTML($html);
+    		$pdf->Output('saldo_kas.pdf', 'D');
+  }
+>>>>>>> .r44
+
+<<<<<<< .mine
+	
+}||||||| .r40
+	
+=======
+	}
+>>>>>>> .r44
+=======
+        ob_start();
+        $data['data_saldo'] = $this->db->get('saldo_kas')->result();
+        $this->load->view('admin/laporan/printsaldo', $data);
+        $html = ob_get_contents();
+          ob_end_clean();
+        
+          require_once('./assets/html2pdf/html2pdf.class.php');
+        $pdf = new HTML2PDF('P','A4','en');
+        $pdf->WriteHTML($html);
+        $pdf->Output('saldo_kas.pdf', 'D');
+>>>>>>> .r54

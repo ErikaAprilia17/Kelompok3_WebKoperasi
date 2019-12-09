@@ -1,0 +1,15 @@
+<?php
+class kredit_macet extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Kredit Macet',
+			'page' => 'admin/laporan/v_kredit_macet',
+			'data_kredit_macet' => $this->db->get('kredit_macet')->result(),
+			
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+		}
+	}

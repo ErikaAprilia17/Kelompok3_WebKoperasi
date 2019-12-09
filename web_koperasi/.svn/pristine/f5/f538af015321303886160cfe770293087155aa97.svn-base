@@ -1,0 +1,76 @@
+<div class="content-wrapper">
+   <div class="page-header">
+			            <h3 class="page-title">
+			              Tambah Setoran Tunai
+			            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/master_data/jenis_akun">Setoran Tunai</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                  <form class="forms-sample" action="<?php echo base_url()?>admin/simpanan/setoran_tunai/insert/" method="post">
+                    <input type="hidden" class="form-control" name="id" >
+                    <div class="form-group">
+                      <label for="tgl_transaksi">Tanggal Transaksi</label>
+                      <input type="date" class="form-control" name="tgl_transaksi" id="tgl_transaksi" placeholder="tgl_transaksi" >
+                    </div>
+                <p><b>Identitas Penyetor </b></p>
+                			<div class="form-group">
+                      <label for="nama_penyetor">Nama Penyetor</label>
+                      <input type="text" class="form-control" name="nama_penyetor" id="nama_penyetor" placeholder="nama_penyetor" >
+                         <div class="form-group">
+                      <label for="no_identitas">No.Identitas</label>
+                      <input type="text" class="form-control" name="no_identitas" id="no_identitas" placeholder="no_identitas" >
+                    </div>
+                    <div class="form-group">
+                      <label for="alamat">Alamat</label>
+                      <textarea class="form-control" rows="5" cols="50" name="alamat"></textarea>
+                   </div>
+                   <p><b>Identitas Penerima</b></p>
+                   <div class="form-group">
+                      <label for="nama_Anggota">Nama Anggota</label>
+                        <select class="form-control" id="nama_anggota" name="id_anggota">
+                        <?php foreach($data_anggota as $nama){ ?>
+                        	<option value="<?=$nama->id_anggota?>"><?= $nama->nama_anggota?></option>
+                        <?php } ?>
+                        </select>
+                      </div>
+                  <div class="form-group">
+                      <label for="nama_Anggota">Departemen</label>
+                        <select class="form-control" id="departemen" name="departemen">
+                        <?php foreach($departemen as $departemen){ ?>
+                        	<option value="<?=$departemen->id?>"><?= $departemen->departemen?></option>
+                        <?php } ?>
+                        </select>
+                      </div>
+                   <div class="form-group">
+                      <label for="jenis_simpanan">Jenis Simpanan</label>
+                        <select class="form-control" id="jenis_simpanan" name="jenis_simpanan">
+                        <?php foreach($jenis_simpanan as $jenis_simpanan){ ?>
+                        	<option value="<?=$jenis_simpanan->id?>"><?= $jenis_simpanan->jenis_simpanan?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                       <div class="form-group">
+                      <label for="jumlah">Jumlah Simpanan</label>
+                      <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="jumlah Penarikan" >
+                    </div>
+                    <div class="form-group">
+                      <label for="user">User</label>
+                      <select class="form-control" id="user" name="user" >
+                          <option>Admin</option>
+                          <option>Member</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <a href="<?php echo base_url()?>admin/simpanan/setoran_tunai" class="btn btn-light">Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            
