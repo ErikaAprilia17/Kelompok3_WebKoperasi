@@ -1,0 +1,57 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title"><center>
+             Bayar Angsuran
+            </center></h3>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID </th>
+                        <th>Kode </th>
+                        <th>Tanggal Pinjam </th>
+                        <th>ID Anggota </th>
+                        <th>Nama Anggota</th>
+                        <th>Pokok Pinjaman</th>
+                        <th>Lama Pinjam</th>
+                        <th>Angsuran Pokok </th>
+                        <th>Bunga Angsuran</th>
+                        <th>Biaya Admin</th>
+                        <th>Angsuran Perbulan</th>
+                        <th>Bayar</th>
+                      </tr>
+                    </thead>
+                    <tbody>                        
+                    <?php 
+                    foreach($data_angsuran as $bayar_angsuran){ 
+                    ?>
+                    <tr>
+                    <td><?php echo $bayar_angsuran->id?></td>
+                     <td><?php echo $bayar_angsuran->kode?></td>
+                    <td><?php echo $bayar_angsuran->tanggal_pinjam ?></td>
+                    <td><?php echo $bayar_angsuran->id_anggota ?></td>
+                    <td><?php echo $bayar_angsuran->nama_anggota ?></td>
+                    <td><?php echo $bayar_angsuran->pokok_pinjaman ?></td>
+                    <td><?php echo $bayar_angsuran->lama_pinjam ?></td>
+                    <td><?php echo $bayar_angsuran->angsuran_pokok ?></td>
+                    <td><?php echo $bayar_angsuran->bunga_angsuran ?></td>
+                    <td><?php echo $bayar_angsuran->biaya_admin ?></td>
+                    <td><?php echo $bayar_angsuran->angsuran_perbulan ?></td>
+                    <td><?php echo $bayar_angsuran->bayar ?></td>
+                    </td>
+                    </tr>
+                    <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+

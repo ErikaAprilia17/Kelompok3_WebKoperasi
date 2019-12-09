@@ -1,0 +1,139 @@
+<?php
+class pemasukan extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Data Pemasukan',
+			'page' => 'admin/transaksi_kas/v_pemasukan',
+			'data_pemasukan' => $this->db->get('pemasukan')->result(),
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+	function _getkode() {
+		$query = $this->db->select_max('kode_transaksi')->get('pemasukan')->row();
+		$max_kode = $query->kode_transaksi;
+		$noUrut = (int) substr($max_kode, 3, 4);
+		$noUrut++;
+		$char = "DPT";
+		$kodeBarang = $char . sprintf("%04s", $noUrut);
+		return $kodeBarang;
+	}
+	function edit($id){
+		$data = array(
+			'title' => 'Edit Data Pemasukan',
+			'page' => 'admin/transaksi_kas/v_edit_pemasukan',
+<<<<<<< .mine
+			'data_pemasukan' => $this->db->where('id',$id)->get('pemasukan')->row(),
+			'data_kas'=> $this->db->get('data_kas')->result(),
+			'jenis_akun'=> $this->db->get('jenis_akun')->result(),
+			
+||||||| .r52
+			'data_pemasukan' => $this->db->where('id',$id)->get('saldo_kas')->row(),
+			'data'=> $this->db->get('data_kas')->result(),
+			'data_akun'=> $this->db->get('jenis_akun')->result(),
+=======
+			'data_pemasukan' => $this->db->where('id',$id)->get('pemasukan')->row(),
+			'data'=> $this->db->get('data_kas')->result(),
+			'data_akun'=> $this->db->get('jenis_akun')->result(),
+>>>>>>> .r54
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function update(){
+		$id = $this->input->post('id');
+		$kode_transaksi = $this->_getkode();
+		$tanggal_transaksi = $this->input->post('tanggal_transaksi');
+		$uraian = $this->input->post('uraian');
+		$untuk_kas = $this->input->post('untuk_kas');
+		$dari_akun = $this->input->post('dari_akun');
+		$jumlah = $this->input->post('jumlah');
+		$user = $this->input->post('user');
+
+		$data = array(
+			'kode_transaksi' => $kode_transaksi,
+			'tanggal_transaksi' => $tanggal_transaksi,
+			'uraian' => $uraian,
+			'untuk_kas' => $untuk_kas,
+			'dari_akun' => $dari_akun,
+			'jumlah' => $jumlah,
+			'user' => $user,
+		);
+
+		$where = array(
+		'id' => $id
+		);
+ 
+		$this->db->where($where);
+		$this->db->update('pemasukan',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('admin/transaksi_kas/pemasukan');
+	}
+
+
+	function tambah(){
+		$data = array(
+			'title' => 'Tambah Pemasukan Tunai',
+			'page' => 'admin/transaksi_kas/v_tambah_pemasukan',
+			'data_kas'=> $this->db->get('data_kas')->result(),
+			'jenis_akun'=> $this->db->get('jenis_akun')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function insert(){
+		$kode_transaksi = $this->_getkode();
+		$tanggal_transaksi = $this->input->post('tanggal_transaksi');
+		$uraian = $this->input->post('uraian');
+		$untuk_kas = $this->input->post('untuk_kas');
+		$dari_akun = $this->input->post('dari_akun');
+		$jumlah = $this->input->post('jumlah');
+		$user = $this->input->post('user');
+
+		$data = array(
+			'kode_transaksi' => $kode_transaksi,
+			'tanggal_transaksi' => $tanggal_transaksi,
+			'uraian' => $uraian,
+			'untuk_kas' => $untuk_kas,
+			'dari_akun' => $dari_akun,
+			'jumlah' => $jumlah,
+			'user' => $user,
+			
+		);
+
+		$this->db->insert('pemasukan',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('admin/transaksi_kas/pemasukan');
+	}
+
+	 function hapus($id){
+ 
+  		$this->db->where('id', $id);
+  		$this->db->delete('pemasukan');
+  		$this->session->set_flashdata('success_hapus','a'); 
+  		redirect('admin/transaksi_kas/pemasukan');
+ }
+ 	public function cetak(){
+    		ob_start();
+    		$data['data_pemasukan'] = $this->db->get('pemasukan')->result();
+    		$this->load->view('admin/transaksi_kas/print_pemasukan', $data);
+    		$html = ob_get_contents();
+        	ob_end_clean();
+        
+        	require_once('./assets/html2pdf/html2pdf.class.php');
+    		$pdf = new HTML2PDF('P','A4','en');
+    		$pdf->WriteHTML($html);
+    		$pdf->Output('pemasukan.pdf', 'D');
+    	}
+    	public function search(){
+			$keyword    =   $this->input->post('keyword');
+	        $data['data_pemasukan'] =$this->db->search('pemasukan',$keyword);
+	        $this->db->like('kode_transaksi',$keyword);
+	        $query  =   $this->db->get('pemasukan')->result();
+	        $this->load->view('admin/transaksi_kas/pemasukan',$data);
+	}
+
+	
+	}

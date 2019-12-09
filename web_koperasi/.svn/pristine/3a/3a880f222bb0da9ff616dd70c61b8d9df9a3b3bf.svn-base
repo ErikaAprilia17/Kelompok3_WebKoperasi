@@ -1,0 +1,23 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class data_pengajuan extends CI_Controller 
+{	
+	public function index()
+	{
+		
+		$data = array(
+			'title' => 'Data Pengajuan',
+			'page' => 'admin/pinjaman/v_data_pengajuan',
+			'data_simpanan' => $this->db->get('data_pengajuan')->result(),
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+function hapus($id){
+ 
+  		$this->db->where('id', $id);
+  		$this->db->delete('data_pengajuan');
+  		$this->session->set_flashdata('success_hapus','a'); 
+  		redirect('admin/pinjaman/data_pengajuan');
+  	}
+}

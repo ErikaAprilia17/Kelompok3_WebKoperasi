@@ -1,0 +1,33 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class data_pengajuan extends CI_Controller 
+{	
+	public function index()
+	{
+		
+		$data = array(
+			'title' => 'Data Pengajuan',
+			'page' => 'admin/pinjaman/v_data_pengajuan',
+			'data_simpanan' => $this->db->get('data_pengajuan')->result(),
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	// public function pengajuan()
+	// {
+	// 	$pengajuan = $this->input->post();
+	// 	$data = array(
+	// 			'id_ajuan' => $id_ajuan, 
+ //                'tanggal_pengajuan' => $tanggal_pengajuan,
+ //                'anggota' => $anggota,
+ //                'jenis' => $jenis,
+ //                'jumlah' => $jumlah,
+ //                'bln' => $bln,
+ //                'keterangan' => $keterangan, 
+ //                'status' => $status,
+ //                'sisa_pinjaman' => $sisa_pinjaman,
+ //                'aksi' => $aksi);
+			 
+	// 	}
+}

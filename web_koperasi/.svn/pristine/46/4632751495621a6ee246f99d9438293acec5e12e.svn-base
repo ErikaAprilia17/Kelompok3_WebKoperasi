@@ -1,0 +1,81 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title"><center>
+             Laporan
+            </center></h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Laporan</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Saldo Kas</h4>
+                                   <button><center> <?php echo date(' d/M / y') ?></button></center>
+               <p></p>
+                <!--  <p>                   
+                 <div> Bulan
+<select name="bulan">
+<option value="01">Januari</option>
+<option value="02">Februari</option>
+<option value="03">Maret</option>
+<option value="04">April</option>
+<option value="05">Mei</option>
+<option value="06">Juni</option>
+<option value="07">Juli</option>
+<option value="08">Agustus</option>
+<option value="09">September</option>
+<option value="10">Oktober</option>
+<option value="12">November</option>
+<option value="12">Desember</option>
+</select></div>
+<div>Tahun
+<select name="tahun">
+<?php
+$mulai= date('Y') - 50;
+for($i = $mulai;$i<$mulai + 100;$i++){
+    $sel = $i == date('Y') ? ' selected="selected"' : '';
+    echo '<option value="'.$i.'"'.$sel.'>'.$i.'</option>';
+}
+?>
+
+</select></div></p> -->
+
+               <a href="<?php echo base_url()?>admin/laporan/data_anggota/cetak" class="btn btn-gradient-info btn-icon-text"><i class="mdi mdi-printer btn-icon-append">Cetak Laporan</i></a>
+                    
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Nama Kas </th>
+                        <th>Saldo</th> 
+                      </tr>
+                    </thead>
+                    <tbody>
+                     <!-- <?php 
+                           $id = 1;
+                          foreach($data_kas as $data_kas){ 
+                                        ?>
+                              <tr>
+                          
+                          <td><?php echo $data_kas->nama_kas?></td>
+                           <td><?php echo $data_kas->saldo?></td>
+                                                  
+                            </tr>
+                            <?php }?> -->
+                              
+                        </tbody>
+                  </table>
+                  <!--  <script type="text/javascript">
+                      function cetak(){
+                      window.print();
+                      } </script> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

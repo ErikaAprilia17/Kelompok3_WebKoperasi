@@ -1,0 +1,16 @@
+Flowchart Operator:
+
+Operator_Menu
+Operator_Login 
+Operator_laporan
+Operator_laporan_DaftarHadirPegawai 
+Operator_laporan_RekapAbsensiBulanan 
+Operator_laporan_DaftarHadirOPD  
+Operator_laporan_TPPNS  
+Operator_Master Data
+Operator_Master Data_DataPegawaiOPD (saat diklik ubah maka menghasilkan error
+Operator_Master Data_RegistrasiShift (tombol pada action pada from Registrasi shift masih error
+tombol submit dalam memilih bulan dan tahun tidak berfungsi)
+Operator_Master Data_JamKerjaOPD 
+Operator_Master Data_BobotJabatan  
+Admin_Olah Data_ManualAbsensi2017

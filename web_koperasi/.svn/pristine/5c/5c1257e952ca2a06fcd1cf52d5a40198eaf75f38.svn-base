@@ -1,0 +1,64 @@
+<?php
+class data_anggota extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Data Anggota',
+			'page' => 'admin/master_data/v_data_anggota',
+			'data_anggota' => $this->db->get('data_anggota')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function edit($id){
+		$data = array(
+			'title' => 'Edit Data A]',
+			'page' => 'admin/master_data/v_edit_anggota',
+			'data_anggota' => $this->db->where('id_anggota',$id_anggota)->get('data_anggota')->row(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	// function update(){
+	// 	$id = $this->input->post('id');
+	// 	$kode_aktiva = $this->input->post('kode_aktiva');
+	// 	$jenis_transaksi = $this->input->post('jenis_transaksi');
+	// 	$akun = $this->input->post('akun');
+	// 	$pemasukan = $this->input->post('pemasukan');
+	// 	$pengeluaran = $this->input->post('pengeluaran');
+	// 	$aktif = $this->input->post('aktif');
+	// 	$laba_rugi = $this->input->post('laba_rugi');
+
+	// 	$data = array(
+	// 		'kode_aktiva' => $Kode_Aktiva,
+	// 		'jenis_transaksi' => $jenis_transaksi,
+	// 		'akun' => $Akun,
+	// 		'pemasukan' => $Pemasukan,
+	// 		'pengeluaran' => $Pengeluaran,
+	// 		'aktif' => $Aktif,
+	// 		'laba_rugi' => $Laba_Rugi,
+	// 	);
+
+	// 	$where = array(
+	// 		'id' => $id
+	// 	);
+
+	// 	$this->db->where($where);
+	// 	$this->db->update('jenis_akun',$data);
+	// 	redirect('admin/master_data/jenis_akun');
+	// }
+
+	function tambah(){
+		$data = array(
+			'title' => 'Tambah Data Anggota',
+			'page' => 'admin/master_data/v_tambah_anggota',
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	 
+}

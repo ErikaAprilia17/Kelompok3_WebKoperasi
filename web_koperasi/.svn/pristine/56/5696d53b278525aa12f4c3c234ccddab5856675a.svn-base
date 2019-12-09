@@ -1,0 +1,37 @@
+Flowchart Admin:
+
+Admin_Menu
+Admin_Login 
+Admin_laporan
+Admin_laporan_DaftarHadirPegawai 
+Admin_laporan_RekapAbsensiBulanan 
+Admin_laporan_TPPNS  
+Admin_Manjemen System
+Admin_Manjemen System_BackupDatabase 
+Admin_Manjemen System_BackupAplikasi 
+Admin_Manjemen System_BackupKonfigurasi 
+Admin_Master Data
+Admin_Master Data_SebaranAbsenPegawai  (Belum) loadingnya lama
+Admin_Master Data_DataPegawaiOPD saat diklik ubah maka menghasilkan error
+Admin_Master Data_RegistrasiSerial (Belum)  chek dan tombol simpan tidak dapat diklik
+Admin_Master Data_AdminSKPD(2016)
+Admin_Master Data_RegistrasiShift tombol pada action pada from Registrasi shift masih error
+Admin_Master Data_JamKerjaOPD
+Admin_Master Data_BobotJabatan 
+Admin_Olah Data 
+Admin_Olah Data_ManualAbsensi2017
+Admin_Olah Data_UploadDataPresensi
+Admin_Pengaturan
+Admin_Pengaturan_Hak Akses
+Admin_Pengaturan_PerangkatAbsensi 
+Admin_Pengaturan_Pengaturan
+Admin_Pengaturan_Pengaturan_Libur 
+Admin_Pengaturan_Pengaturan_StatusAbsen 
+Admin_Pengaturan_Pengaturan_ScanStatus 
+Admin_Pengaturan_Pengaturan_KetentuanAbsensi 
+Admin_Pengaturan_Pengaturan_TipeLembur 
+Admin_Pengaturan_Pengaturan_Bobot Jabatan
+Admin_Pengaturan_Peraturan_Indikator
+Admin_Tools
+Admin_Tools_ValidasiRekap(2016)
+Admin_Tools_PengaturanHargaJabatan

@@ -1,0 +1,82 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Tambah Setoran Tunai
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/master_data/jenis_akun">Setoran Tunai</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                  <form class="forms-sample" action="<?php echo base_url()?>admin/simpanan/setoran_tunai/insert/" method="post">
+                    <input type="hidden" class="form-control" name="id" >
+                    <div class="form-group">
+                      <label for="kode_transaksi"><b>Kode Transaksi</b></label>
+                      <input type="text" class="form-control" name="kode_transaksi" id="kode_transaksi" placeholder="kode_transaksi" >
+                    </div>
+                    <div class="form-group">
+                      <label for="tgl_transaksi"><b>Tanggal Transaksi</b></label>
+                      <input type="date" class="form-control" name="tgl_transaksi" id="tgl_transaksi" placeholder="tgl_transaksi" >
+                    </div>
+                    <div class="form-group">
+                      <label for="id_anggota"><b>ID Anggota</b></label>
+                       <select name="id_anggota" id="id" class="form-control" onchange='changeValue(this.value)' required>
+                        <option value="">-Pilih-</option>
+                      <?php foreach($id_anggota as $data){ ?>
+                          <option value="<?= $data->id_anggota ?>"><?= $data->id_anggota ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="nama_anggota"><b>Nama Anggota</b></label>
+                      <input type="text" class="form-control" name="nama_anggota" id="nama_anggota" placeholder="nama_anggota" >
+                    </div>
+                    <div class="form-group">
+                      <label for="dept"><b>Dept</b></label>
+                      <input type="text" class="form-control" name="dept" id="dept" placeholder="dept" >
+                    </div>
+                    <div class="form-group">
+                      <label for="jenis_simpanan"><b>Jenis Simpanan</b></label>
+                        <select class="form-control" id="jenis_simpanan" name="jenis_simpanan" >
+                          <option>Simpanan Wajib</option>
+                          <option>Simpanan Pokok</option>
+                          <option>Simpanan Sukarela</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                      <label for="jumlah"><b>Jumlah Simpanan</b></label>
+                      <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="jumlah" >
+                    </div>
+                    <div class="form-group">
+                      <label for="use"><b>User</b></label>
+                      <select class="form-control" id="user" name="user" >
+                          <option>Admin</option>
+                          <option>Member</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <a href="<?php echo base_url()?>admin/simpanan/setoran_tunai" class="btn btn-light">Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            <script type="text/javascript"> 
+
+              $( "#id_anggota" ).change(function() {
+                var id = $(this).val();
+                $.ajax({
+                    dataType: "json",
+                    url:BASE_URL+'admin/simpanan/setoran_tunai/get_setoran/'+id,
+                    success: function(res){
+                      $("#id_anggota").val(res.id_anggota);
+                    }
+                  });
+            });
+
+            </script>

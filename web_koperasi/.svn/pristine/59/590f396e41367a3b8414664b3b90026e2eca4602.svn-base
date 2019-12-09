@@ -1,0 +1,63 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title"><center>
+             Bayar Angsuran
+            </center></h3>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>id</th>
+                        <th>Kode </th>
+                        <th>Tanggal Pinjam </th>
+                        <th>ID Anggota </th>
+                        <th>Nama Anggota</th>
+                        <th>Pokok Pinjaman</th>
+                        <th>Lama Pinjam</th>
+                        <th>Angsuran Pokok </th>
+                        <th>Bunga Angsuran</th>
+                        <th>Biaya Admin</th>
+                        <th>Angsuran Perbulan</th>
+                        <th>Bayar</th>
+                      </tr>
+                    </thead>
+                    <tbody> 
+                    <?php                       
+                    $id = 1;
+                          if(is_array($data_angsuran))
+                          foreach($data_angsuran as $angsuran){ 
+                                        ?>
+                              <tr>
+                          <td><?php echo $id++ ?></td>
+                    <td><?php echo $angsuran->kode?></td>
+                    <td><?php echo $angsuran->tanggal_pinjam ?></td>
+                    <td><?php echo $angsuran->id_anggota ?></td>
+                    <td><?php echo $angsuran->nama_anggota ?></td>
+                    <td><?php echo $angsuran->pokok_pinjaman ?></td>
+                    <td><?php echo $angsuran->lama_pinjam ?></td>
+                    <td><?php echo $angsuran->angsuran_pokok ?></td>
+                    <td><?php echo $angsuran->bunga_angsuran ?></td>
+                    <td><?php echo $angsuran->biaya_admin ?></td>
+                    <td><?php echo $angsuran->angsuran_perbulan ?></td>
+                    
+                    <td>
+
+                              	<?php echo anchor('admin/pinjaman/bayar_angsuran/bayar/'.$angsuran->id_anggota,'bayar'); ?> 
+                            </td>	
+                    
+                    </tr>
+                    <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+

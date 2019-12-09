@@ -1,0 +1,75 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Tambah Data Penarikan Tunai
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/simpanan/penarikan_tunai">Data Penarikan Tunai</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                   <form class="forms-sample" action="<?php echo base_url()?>admin/simpanan/penarikan_tunai/insert" method="post">
+                    <input type="hidden" class="form-control" name="id" >
+                    <div class="form-group">
+                      <label for="kode_transaksi"><b>Kode Transaksi</b></label>
+                      <input type="text" class="form-control" name="kode_transaksi" id="kode_transaksi" placeholder="Kode Transaksi" >
+                    </div>
+                    <div class="form-group">
+                      <label for="tanggal_transaksi"><b>Tanggal Transaksi</b></label>
+                      <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" placeholder="Tanggal Transaksi" >
+                    </div>
+                    <div class="form-group">
+                      <label for="id_anggota"><b>ID Anggota</b></label>
+                      <input type="text" class="form-control" name="id_anggota" id="id_anggota" placeholder="ID Anggota" >
+                    </div>
+                    <div class="form-group">
+                      <label for="nama"><b>Nama Anggota</b></label>
+                      <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Anggota" >
+                    </div>
+                    <div class="form-group">
+                      <label for="dept"><b>Dept</b></label>
+                      <input type="dept" class="form-control" name="dept" id="dept" placeholder="Departemen" >
+                    </div>
+                    <div class="form-group">
+                      <label for="jenis_penarikan"><b>Jenis Penarikan</b></label>
+                        <select class="form-control" id="jenis_penarikan" name="jenis_penarikan">
+                        <?php
+                             if($data_penarikan_tunai->jenis_penarikan == 'Simpanan Pokok'){
+                        ?>
+                          <option selected="">Simpanan Pokok</option>
+                          <option>Simpanan Sukarela</option>
+                          <option>Simpanan Wajib</option>
+
+                        <?php{else if ?>
+                            <option>Simpanan Pokok</option>
+                            <option selected="">Simpanan Sukarela</option>
+                            <option>Simpanan Wajib</option>
+
+                       <?php }else{?>
+                            <option>Simpanan Pokok</option>
+                            <option>Simpanan Sukarela</option>
+                            <option selected="">Simpanan Wajib</option>
+                            <?php } ?>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="jumlah"><b>Jumlah Penarikan</b></label>
+                      <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="jumlah Penarikan" >
+                    </div>
+                    <div class="form-group">
+                      <label for="user"><b>User</b></label>
+                      <input type="text" class="form-control" name="user" id="user" placeholder="User">
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary btn-icon-text"><i class="mdi mdi-file-check btn-icon-prepend"></i>Submit</button>
+                    <a href="<?php echo base_url()?>admin/transaksi_kas/pemasukan" class="btn btn-gradient-danger btn-icon-text"><i class="mdi mdi-close-circle btn-icon-prepend"></i>Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            

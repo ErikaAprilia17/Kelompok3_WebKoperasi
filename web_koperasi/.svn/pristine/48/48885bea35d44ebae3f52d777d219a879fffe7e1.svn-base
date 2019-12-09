@@ -1,0 +1,56 @@
+<?php
+							 $sess = $this->session->userdata('member');
+							?>
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+              <div class="nav-profile-image">
+                <img src="<?= base_url('file/').$sess->photo ?>" alt="profile">
+                <span class="login-status online"></span> <!--change to offline or busy as needed-->              
+              </div>
+              <div class="nav-profile-text d-flex flex-column">
+                <span class="font-weight-bold mb-2"><?= $sess->nama_anggota ?></span>
+                <span class="text-secondary text-small">Member</span>
+              </div>
+              <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() ?>member/dashboard">
+              <span class="menu-title">Dashboard</span>
+              <i class="mdi mdi-home menu-icon"></i>
+            </a>
+          </li>
+    
+          
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="general-pages">
+              <span class="menu-title">Pengajuan Pinjaman</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-settings menu-icon"></i>
+            </a>
+            <div class="collapse" id="pengajuan_pinjaman">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url() ?>member/pengajuan_pinjaman/identitas_koperasi"> Data Pengajuan </a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url() ?>member/pengajuan_pinjaman/tambah_pengajuan_baru"> Tambah Pengajuan Baru </a></li>
+              </ul>
+              </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="general-pages">
+              <span class="menu-title">Laporan</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-bookmark-check"></i>
+            </a>
+           <!--  mdi mdi-settings menu-icon -->
+            <div class="collapse" id="laporan">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url() ?>member/laporan/simpanan"> Simpanan </a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url() ?>member/laporan/pinjaman/">Pinjaman</a></li>
+                 <li class="nav-item"> <a class="nav-link" href="<?php echo base_url() ?>member/laporan/pembayaran/">Pembayaran</a></li>
+              </ul>
+              </div>
+          </li>
+        </ul>
+      </nav>

@@ -1,0 +1,16 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class pinjaman_lunas extends CI_Controller 
+{	
+	public function index()
+	{
+		
+		$data = array(
+			'title' => 'Bayar Angsuran',
+			'page' => 'admin/pinjaman/v_pinjaman_lunas',
+			//'data_angsuran' => $this->db->get('bayar_angsuran')->result(),
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+}
