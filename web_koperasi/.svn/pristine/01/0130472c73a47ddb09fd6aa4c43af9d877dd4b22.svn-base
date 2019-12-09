@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Cetak PDF</title>
+</head>
+<body>
+<h1 style="text-align: center;">Laporan Data Anggota</h1>
+
+<table border="1" width="100%">
+<thead>
+                      <tr>
+                        
+                        <th>ID Anggota</th>
+                        <th>Nama Anggota</th>
+                        <th>Jenis Kelamin </th>
+                        <th>Alamat</th>
+                        <th>Jabatan </th>
+                        <th>Tanggal Registrasi</th>
+                        <th>Aktif Keanggotaan</th>
+                       
+                        
+                      </tr>
+                    </thead>
+                   <tbody>
+                      <?php 
+                          foreach($data_anggota as $key => $data_anggota){ 
+                          	// $no = 1;
+                                        ?>
+                              <tr>
+                          
+                          <td><?php echo ++$key ?></td>
+                          
+                          <td><?php echo $data_anggota->nama_anggota ?></td>
+                          <td><?php echo $data_anggota->jenis_kelamin ?></td>
+                          <td><?php echo $data_anggota->alamat ?></td>
+                          <td><?php echo $data_anggota->jabatan ?></td>
+                          <td><?php echo $data_anggota->tgl_registrasi ?></td>
+                          <td><?php echo $data_anggota->aktif_keanggotaan ?></td>
+
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+
+</table>
+</body>
+</html>

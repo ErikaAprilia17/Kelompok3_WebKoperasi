@@ -1,0 +1,21 @@
+<?php
+class identitas_koperasi extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Identitas Koperasi',
+			'page' => 'admin/setting/v_identitas',
+			'identitas' => $this->db->get('identitas_koperasi')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+		
+	}
+
+	function simpan($id){
+		$this->db->where('id',$id)->delete('data_kas');
+		$this->session->set_flashdata('success_simpan','a'); 
+		redirect('admin/setting/identitas_koperasi');
+	}
+}
