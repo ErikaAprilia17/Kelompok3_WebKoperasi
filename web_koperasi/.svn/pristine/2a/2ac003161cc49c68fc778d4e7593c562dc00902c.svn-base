@@ -1,0 +1,73 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Tambah Data Penarikan Tunai
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/simpanan/penarikan_tunai">Data Penarikan Tunai</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                   <form class="forms-sample" action="<?php echo base_url()?>admin/simpanan/penarikan_tunai/insert" method="post">
+                    <input type="hidden" class="form-control" name="id" >
+                    <div class="form-group">
+                      <label for="kode_transaksi"><b>Kode Transaksi</b></label>
+                      <input type="text" class="form-control" name="kode_transaksi" id="kode_transaksi" placeholder="Kode Transaksi" >
+                    </div>
+                    <div class="form-group">
+                      <label for="tanggal_transaksi"><b>Tanggal Transaksi</b></label>
+                      <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" placeholder="Tanggal Transaksi" >
+                    </div>
+                    <div class="form-group">
+                      <label for="id_anggota"><b>ID Anggota</b></label>
+                      <input type="text" class="form-control" name="id_anggota" id="id_anggota" placeholder="ID Anggota" >
+                    </div>
+                    <div class="form-group">
+                      <label for="nama_anggota"><b>Nama_Anggota</b></label>
+                        <select class="form-control" id="nama_anggota" name="nama_anggota">
+                        <?php foreach( $data_anggota as $data_anggota){ ?>
+                          <option><?= $data_anggota->data_anggota ?></option>
+                        <?php } ?>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="departement"><b>Departement</b></label>
+                        <select class="form-control" id="departement" name="departement">
+                        <?php foreach($departemen as $dep){ ?>
+                          <option><?= $dep->departemen ?></option>
+                        <?php } ?>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="jenis_simpanan"><b>Jenis Penarikan</b></label>
+                        <select class="form-control" id="jenis_simpanan" name="jenis_simpanan">
+                        <?php foreach( $data_simpanan as $jenis_simpanan){ ?>
+                          <option><?= $jenis_simpanan->jenis_simpanan ?></option>
+                        <?php } ?>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="jumlah"><b>Jumlah Penarikan</b></label>
+                      <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="jumlah Penarikan" >
+                    </div>
+                    <div class="form-group">
+                      <label for="User"><b>User</b></label>
+                      <select type="text" class="form-control" name="user" id="user" >
+                       <option>--Pilih User--</option>
+                                  <option>Admin</option>
+                                  <option>Member</option>
+                    </select>
+                  </div>
+                    <button type="submit" class="btn btn-gradient-primary btn-icon-text"><i class="mdi mdi-file-check btn-icon-prepend"></i>Submit</button>
+                    <a href="<?php echo base_url()?>admin/simpanan/penarikan_tunai" class="btn btn-gradient-danger btn-icon-text"><i class="mdi mdi-close-circle btn-icon-prepend"></i>Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            

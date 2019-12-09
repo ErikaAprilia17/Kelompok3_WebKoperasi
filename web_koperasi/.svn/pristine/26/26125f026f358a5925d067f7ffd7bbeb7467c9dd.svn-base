@@ -1,0 +1,450 @@
+<div class="content-wrapper">
+         <div class="page-header">
+           <h3>Laporan 
+            <small class="text-muted"> Data Transaksi Kas </small></h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+           <i class="mdi mdi-clock menu icon"></i><div id="clock"></div>
+                <script type="text/javascript">        
+                    function tampilkanwaktu(){        
+                    var waktu = new Date();            
+                    var sh = waktu.getHours() + "";    
+                    var sm = waktu.getMinutes() + "";   
+                    var ss = waktu.getSeconds() + "";  
+                    document.getElementById("clock").innerHTML = (sh.length==1?"0"+sh:sh) + ":" + (sm.length==1?"0"+sm:sm) + ":" + (ss.length==1?"0"+ss:ss);
+                    }
+                </script><i class="mdi mdi-calendar menu icon"></i>
+               
+                        <body onload="tampilkanwaktu();setInterval('tampilkanwaktu()', 1000);">        
+                        <span id="clock"></span> 
+              
+                      <?php
+                      $hari = date('l');
+                      if ($hari=="Sunday") {
+                       echo "Minggu";
+                      }elseif ($hari=="Monday") {
+                       echo "Senin";
+                      }elseif ($hari=="Tuesday") {
+                       echo "Selasa";
+                      }elseif ($hari=="Wednesday") {
+                       echo "Rabu";
+                      }elseif ($hari=="Thursday") {
+                       echo("Kamis");
+                      }elseif ($hari=="Friday") {
+                       echo "Jum'at";
+                      }elseif ($hari=="Saturday") {
+                       echo "Sabtu";
+                      }
+                      ?>,
+                
+                      <?php
+                      $tgl =date('d');
+                      echo $tgl;
+                      $bulan =date('F');
+                      if ($bulan=="January") {
+                       echo " Januari ";
+                      }elseif ($bulan=="February") {
+                       echo " Februari ";
+                      }elseif ($bulan=="March") {
+                       echo " Maret ";
+                      }elseif ($bulan=="April") {
+                       echo " April ";
+                      }elseif ($bulan=="May") {
+                       echo " Mei ";
+                      }elseif ($bulan=="June") {
+                       echo " Juni ";
+                      }elseif ($bulan=="July") {
+                       echo " Juli ";
+                      }elseif ($bulan=="August") {
+                       echo " Agustus ";
+                      }elseif ($bulan=="September") {
+                       echo " September ";
+                      }elseif ($bulan=="October") {
+                       echo " Oktober ";
+                      }elseif ($bulan=="November") {
+                       echo " November ";
+                      }elseif ($bulan=="December") {
+                       echo " Desember ";
+                      }
+                      $tahun=date('Y');
+                      echo $tahun;
+                      ?>
+              </ol>
+            </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="box-header">
+											<div class="box-header">
+												<section class="content">
+				<!-- Styler -->
+<style type="text/css">
+.panel * {
+	font-family: "Arial","​Helvetica","​sans-serif";
+}
+.fa {
+	font-family: "FontAwesome";
+}
+.datagrid-header-row * {
+	font-weight: bold;
+}
+.messager-window * a:focus, .messager-window * span:focus {
+	color: blue;
+	font-weight: bold;
+}
+.daterangepicker * {
+	font-family: "Source Sans Pro","Arial","​Helvetica","​sans-serif";
+	box-sizing: border-box;
+}
+.glyphicon	{font-family: "Glyphicons Halflings"}
+
+.form-control {
+	height: 20px;
+	padding: 4px;
+}	
+</style>
+
+
+<div class="box box-solid box-primary">
+	<div class="box-header">
+		<h3 class="box-title">Cetak Data Transaksi Kas</h3>
+		
+	</div>
+	<div class="box-body" style="display: block;">
+		<div>
+			<form id="fmCari" method="GET">
+				<input type="hidden" name="tgl_dari" id="tgl_dari">
+				<input type="hidden" name="tgl_samp" id="tgl_samp">
+				<table>
+					<tbody><tr>
+						<td>
+							<div id="filter_tgl" class="input-group" style="display: inline;">
+								<button class="btn btn-default" id="daterange-btn">
+									<i class="fa fa-calendar"></i> <span id="reportrange"><span>01 Jan 2019 - 31 Des 2019									</span></span>
+									<i class="fa fa-caret-down"></i>
+								</button>
+							</div>
+						</td>
+						<td>
+
+							<a href="javascript:void(0)" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-print" plain="false" onclick="cetak()" group="" id=""><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">Cetak Laporan</span><span class="l-btn-icon icon-print">&nbsp;</span></span></a>
+
+							<a href="javascript:void(0);" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-clear" plain="false" onclick="clearSearch()" group="" id=""><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">Hapus Filter</span><span class="l-btn-icon icon-clear">&nbsp;</span></span></a>
+						</td>
+					</tr>
+				</tbody></table>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="box box-primary">
+<div class="box-body">
+<p></p>
+	<p style="text-align:center; font-size: 15pt; font-weight: bold;"> Laporan Transkasi Kas Periode 01 Jan 2019 - 31 Des 2019</p>
+	<table class="table table-bordered">
+		<tbody><tr class="header_kolom">
+			<th class="h_tengah" style="width:5%; vertical-align: middle "> No. </th>
+			<th class="h_tengah" style="width:8%; vertical-align: middle"> Kode <br>Transaksi</th>
+			<th class="h_tengah" style="width:8%; vertical-align: middle"> Tanggal Transaksi</th>
+			<th class="h_tengah" style="width:29%; vertical-align: middle"> Akun Transaksi </th>
+			<th class="h_tengah" style="width:10%; vertical-align: middle"> Dari Kas  </th>
+			<th class="h_tengah" style="width:10%; vertical-align: middle"> Untuk Kas  </th>
+			<th class="h_tengah" style="width:10%; vertical-align: middle"> Debet </th>
+			<th class="h_tengah" style="width:10%; vertical-align: middle"> Kredit </th>
+			<th class="h_tengah" style="width:10%; vertical-align: middle"> Saldo  </th>
+		</tr>
+
+	
+		<tr bgcolor="#FFFFEE">
+				<td class="h_kanan" colspan="7"> <strong>SALDO SEBELUMNYA</strong></td>
+				<td class="h_kanan" colspan="3"><strong>0</strong></td>
+		</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">1</td>
+					<td class="h_tengah" style="vertical-align:middle"> TRD00001</td>
+					<td class="h_tengah" style="vertical-align:middle"> 30 Jul 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Simpanan Sukarela <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 100,000 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> 100,000 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">2</td>
+					<td class="h_tengah" style="vertical-align:middle"> TKK00002</td>
+					<td class="h_tengah" style="vertical-align:middle"> 02 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Biaya Lainnya <br><code>beli obat</code></td>
+					<td class="h_kiri" style="vertical-align:middle"> Bank BNI</td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kanan" style="vertical-align:middle"> 0 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 75,000</td>
+					<td class="h_kanan" style="vertical-align:middle"> 25,000 </td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">3</td>
+					<td class="h_tengah" style="vertical-align:middle"> TKK00003</td>
+					<td class="h_tengah" style="vertical-align:middle"> 03 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Beban Gaji Karyawan <br><code>bayar gaji pegawai</code></td>
+					<td class="h_kiri" style="vertical-align:middle"> Bank BNI</td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kanan" style="vertical-align:middle"> 0 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 75,000</td>
+					<td class="h_kanan" style="vertical-align:middle"> -50,000 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">4</td>
+					<td class="h_tengah" style="vertical-align:middle"> TKK00001</td>
+					<td class="h_tengah" style="vertical-align:middle"> 03 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Biaya Listrik dan Air <br><code>bayar tagihan air</code></td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kanan" style="vertical-align:middle"> 0 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 100,000</td>
+					<td class="h_kanan" style="vertical-align:middle"> -150,000 </td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">5</td>
+					<td class="h_tengah" style="vertical-align:middle"> TRD00002</td>
+					<td class="h_tengah" style="vertical-align:middle"> 11 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Simpanan Pokok <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 100,000 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -50,000 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">6</td>
+					<td class="h_tengah" style="vertical-align:middle"> TPJ00001</td>
+					<td class="h_tengah" style="vertical-align:middle"> 14 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pinjaman Anggota <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kanan" style="vertical-align:middle"> 0 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 20,000,000</td>
+					<td class="h_kanan" style="vertical-align:middle"> -20,050,000 </td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">7</td>
+					<td class="h_tengah" style="vertical-align:middle"> TBY00002</td>
+					<td class="h_tengah" style="vertical-align:middle"> 17 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pembayaran Angsuran <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 1,279,300 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -18,770,700 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">8</td>
+					<td class="h_tengah" style="vertical-align:middle"> TBY00001</td>
+					<td class="h_tengah" style="vertical-align:middle"> 17 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pembayaran Angsuran <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 1,279,300 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -17,491,400 </td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">9</td>
+					<td class="h_tengah" style="vertical-align:middle"> TBY00003</td>
+					<td class="h_tengah" style="vertical-align:middle"> 17 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pembayaran Angsuran <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 1,279,300 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -16,212,100 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">10</td>
+					<td class="h_tengah" style="vertical-align:middle"> TPJ00002</td>
+					<td class="h_tengah" style="vertical-align:middle"> 19 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pinjaman Anggota <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Besar</td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kanan" style="vertical-align:middle"> 0 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 20,000,000</td>
+					<td class="h_kanan" style="vertical-align:middle"> -36,212,100 </td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">11</td>
+					<td class="h_tengah" style="vertical-align:middle"> TPJ00003</td>
+					<td class="h_tengah" style="vertical-align:middle"> 19 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pinjaman Anggota <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kanan" style="vertical-align:middle"> 0 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 5,000,000</td>
+					<td class="h_kanan" style="vertical-align:middle"> -41,212,100 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">12</td>
+					<td class="h_tengah" style="vertical-align:middle"> TRD00003</td>
+					<td class="h_tengah" style="vertical-align:middle"> 21 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Simpanan Sukarela <br><code>Sss</code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 122,222 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -41,089,878 </td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">13</td>
+					<td class="h_tengah" style="vertical-align:middle"> TPJ00004</td>
+					<td class="h_tengah" style="vertical-align:middle"> 27 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pinjaman Anggota <br><code>Pinjamn</code></td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Besar</td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kanan" style="vertical-align:middle"> 0 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 500,000</td>
+					<td class="h_kanan" style="vertical-align:middle"> -41,589,878 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">14</td>
+					<td class="h_tengah" style="vertical-align:middle"> TPJ00005</td>
+					<td class="h_tengah" style="vertical-align:middle"> 27 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pinjaman Anggota <br><code>pinjam</code></td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kanan" style="vertical-align:middle"> 0 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 500,000</td>
+					<td class="h_kanan" style="vertical-align:middle"> -42,089,878 </td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">15</td>
+					<td class="h_tengah" style="vertical-align:middle"> TKD00005</td>
+					<td class="h_tengah" style="vertical-align:middle"> 27 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pendapatan Lainnya <br><code>Penjualan</code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 100,000 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -41,989,878 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">16</td>
+					<td class="h_tengah" style="vertical-align:middle"> TBY00004</td>
+					<td class="h_tengah" style="vertical-align:middle"> 27 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pembayaran Angsuran <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 33,400 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -41,956,478 </td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">17</td>
+					<td class="h_tengah" style="vertical-align:middle"> TBY00005</td>
+					<td class="h_tengah" style="vertical-align:middle"> 31 Ags 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pembayaran Angsuran <br><code>Hakim Ketua</code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 33,400 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -41,923,078 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">18</td>
+					<td class="h_tengah" style="vertical-align:middle"> TBY00006</td>
+					<td class="h_tengah" style="vertical-align:middle"> 01 Sep 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pembayaran Angsuran <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 534,400 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -41,388,678 </td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+					<td class="h_tengah" style="vertical-align:middle">19</td>
+					<td class="h_tengah" style="vertical-align:middle"> TPJ00006</td>
+					<td class="h_tengah" style="vertical-align:middle"> 04 Sep 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pinjaman Anggota <br><code></code></td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kanan" style="vertical-align:middle"> 0 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 100,000</td>
+					<td class="h_kanan" style="vertical-align:middle"> -41,488,678 </td>
+			</tr>
+			<tr bgcolor="#EEEEEE">
+					<td class="h_tengah" style="vertical-align:middle">20</td>
+					<td class="h_tengah" style="vertical-align:middle"> TBY00007</td>
+					<td class="h_tengah" style="vertical-align:middle"> 05 Sep 2019</td>
+					<td class="h_kiri" style="vertical-align:middle"> Pembayaran Angsuran <br><code>Angsuran 1</code></td>
+					<td class="h_kiri" style="vertical-align:middle"> -</td>
+					<td class="h_kiri" style="vertical-align:middle"> Kas Tunai</td>
+					<td class="h_kanan" style="vertical-align:middle"> 29,200 </td>
+					<td class="h_kanan" style="vertical-align:middle"> 0</td>
+					<td class="h_kanan" style="vertical-align:middle"> -41,459,478 </td>
+			</tr>
+		</tbody></table>
+	<div class="box-footer"><ul class="pagination"><li class="active"><a href="">1</a></li><li class="page"><a href="http://localhost/web_koperasi/admin/laporan/transaksi_kas/2?tgl_dari=2019-01-01&amp;tgl_samp=2019-12-31">2</a></li><li class="next page"><a href="http://localhost/web_koperasi/admin/laporan/transaksi_kas2?tgl_dari=2019-01-01&amp;tgl_samp=2019-12-31">Next →</a></li></ul></div></div>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	fm_filter_tgl();
+}); // ready
+
+function fm_filter_tgl() {
+	$('#daterange-btn').daterangepicker({
+		ranges: {
+			'Hari ini': [moment(), moment()],
+			'Kemarin': [moment().subtract('days', 1), moment().subtract('days', 1)],
+			'7 Hari yang lalu': [moment().subtract('days', 6), moment()],
+			'30 Hari yang lalu': [moment().subtract('days', 29), moment()],
+			'Bulan ini': [moment().startOf('month'), moment().endOf('month')],
+			'Bulan kemarin': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')],
+			'Tahun ini': [moment().startOf('year').startOf('month'), moment().endOf('year').endOf('month')],
+			'Tahun kemarin': [moment().subtract('year', 1).startOf('year').startOf('month'), moment().subtract('year', 1).endOf('year').endOf('month')]
+		},
+		locale: 'id',
+		showDropdowns: true,
+		format: 'YYYY-MM-DD',
+		
+					startDate: '2019-01-01',
+					endDate: '20-12-31'
+					},
+
+	function (start, end) {
+		doSearch();
+	});
+}
+
+function clearSearch(){
+	window.location.href = 'http://localhost/web_koperasi/admin/laporan/transaksi_kas';
+}
+
+function doSearch() {
+	var tgl_dari = $('input[name=daterangepicker_start]').val();
+	var tgl_samp = $('input[name=daterangepicker_end]').val();
+	$('input[name=tgl_dari]').val(tgl_dari);
+	$('input[name=tgl_samp]').val(tgl_samp);
+	$('#fmCari').attr('action', 'http://localhost/web_koperasi/admin/laporan/transaksi_kas');
+	$('#fmCari').submit();	
+}
+
+function cetak () {
+	var tgl_dari = $('input[name=daterangepicker_start]').val();
+	var tgl_samp = $('input[name=daterangepicker_end]').val();
+	//$('input[name=tgl_dari]').val(tgl_dari);
+	//$('input[name=tgl_samp]').val(tgl_samp);
+	//$('#fmCari').attr('action', 'https://www.koperasiegc.com/lap_trans_kas/cetak');
+	//$('#fmCari').submit();
+
+	var win = window.open('https://www.koperasiegc.com/lap_trans_kas/cetak/?tgl_dari=' + tgl_dari + '&tgl_samp=' + tgl_samp + '');
+	if (win) {
+		win.focus();
+	} else {
+		alert('Popup jangan di block');
+	}
+
+}
+</script>
+			</section>
+               

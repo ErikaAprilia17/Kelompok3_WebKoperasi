@@ -1,0 +1,78 @@
+        <div class="content-wrapper">
+          <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Edit Profile</h4>
+                  <p class="card-description">
+                  </p>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="col-form-label">Nama Lengkap</label>
+                      <input type="text" class="form-control" value="<?= $data->nama ?>" />
+                    </div>
+                    <div class="form-group">
+                      <label for="col-form-label">Alamat Email</label>
+                      <input type="email" class="form-control" value="<?= $data->email ?>" />
+                    </div>
+                    <div class="form-group">
+                      <label for="col-form-label">Tempat Tanggal Lahir</label>
+                      <input type="text" class="form-control"value="<?= $data->ttl ?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="col-form-label">Jenis Kelamin</label>
+                        <select class="form-control" value="<?= $data->jk ?>" />
+                          <option>Laki-Laki</option>
+                          <option>Perempuan</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="col-form-label">No.Telepon</label>
+                      <input type="text" class="form-control"value="<?= $data->no_tlpon ?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="col-form-label">Status</label>
+                        <select class="form-control" value="<?= $data->status ?>" />
+                          <option>Sudah Menikah</option>
+                          <option>Belum Menikah</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="col-form-label">Alamat</label>
+                      <input type="text" class="form-control" value="<?= $data->alamat ?>" />
+                    </div>
+                    <div class="form-group">
+                      <label for="col-form-label">Kota</label>
+                      <input type="text" class="form-control" value="<?= $data->kota ?>" />
+                    </div>
+                    <div class="form-group">
+                      <label for="col-form-label">Agama</label>
+                        <select class="form-control" value="<?= $data->agama ?>" />
+                          <option>Islam</option>
+                          <option>Protestan</option>
+                          <option>Katolik </option>
+                          <option>Hindu</option>
+                          <option>Buddha</option>
+                          <option>Khonghucu </option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="col-form-label">Pekerjaan</label>
+                      <input type="text" class="form-control" value="<?= $data->pekerjaan ?>" />
+                    </div>
+                    <!-- <div class="form-group">
+                      <label>File upload</label>
+                      <input type="file" class="form-control" name="Photo_id" >
+                      <div class="input-group col-xs-12">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <span class="input-group-append">
+                          <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                        </span>
+                      </div>
+                    </div> -->
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Simpan</button>
+                    <button class="btn btn-light">Kembali</button>
+                  </form>
+                </div>
+              </div>
+            </div>

@@ -1,0 +1,110 @@
+<?php
+class transfer extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Data Transfer',
+			'page' => 'admin/transaksi_kas/v_transfer',
+			'data_transfer' => $this->db->get('transfer')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function edit($id){
+		$data = array(
+			'title' => 'Edit Data Transfer',
+			'page' => 'admin/transaksi_kas/v_edit_transfer',
+			'data_transfer' => $this->db->where('id',$id)->get('transfer')->row(),
+			'data'=> $this->db->get('data_kas')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function update(){
+		$id = $this->input->post('id');
+		$kode_transaksi = $this->input->post('kode_transaksi');
+		$tanggal_transaksi = $this->input->post('tanggal_transaksi');
+		$uraian = $this->input->post('uraian');
+		$jumlah = $this->input->post('jumlah');
+		$dari_kas = $this->input->post('dari_kas');
+		$untuk_kas = $this->input->post('untuk_kas');
+		$user = $this->input->post('user');
+
+		$data = array(
+			'kode_transaksi' => $kode_transaksi,
+			'tanggal_transaksi' => $tanggal_transaksi,
+			'uraian' => $uraian,
+			'jumlah' => $jumlah,
+			'dari_kas' => $dari_kas,
+			'untuk_kas' => $untuk_kas,
+			'user' => $user,
+		);
+
+		$where = array(
+		'id' => $id
+		);
+ 
+		$this->db->where($where);
+		$this->db->update('transfer',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('admin/transaksi_kas/transfer');
+	}
+
+	function tambah(){
+		$data = array(
+			'title' => 'Tambah transfer',
+			'page' => 'admin/transaksi_kas/v_tambah_transfer',
+			'data'=> $this->db->get('data_kas')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function insert(){
+		$kode_transaksi = $this->input->post('kode_transaksi');
+		$tanggal_transaksi = $this->input->post('tanggal_transaksi');
+		$uraian = $this->input->post('uraian');
+		$jumlah = $this->input->post('jumlah');
+		$dari_kas = $this->input->post('dari_kas');
+		$untuk_kas = $this->input->post('untuk_kas');
+		$user = $this->input->post('user');
+
+		$data = array(
+			'kode_transaksi' => $kode_transaksi,
+			'tanggal_transaksi' => $tanggal_transaksi,
+			'uraian' => $uraian,
+			'jumlah' => $jumlah,
+			'dari_kas' => $dari_kas,
+			'untuk_kas' => $untuk_kas,
+			'user' => $user,
+			
+		);
+
+		$this->db->insert('transfer',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('admin/transaksi_kas/transfer');
+	}
+
+	 function hapus($id){
+ 
+  		$this->db->where('id', $id);
+  		$this->db->delete('transfer');
+  		$this->session->set_flashdata('success_hapus','a'); 
+  		redirect('admin/transaksi_kas/transfer');
+ }
+ public function cetak(){
+    		ob_start();
+    		$data['data_transfer'] = $this->db->get('transfer')->result();
+    		$this->load->view('admin/transaksi_kas/print_transfer', $data);
+    		$html = ob_get_contents();
+        	ob_end_clean();
+        
+        	require_once('./assets/html2pdf/html2pdf.class.php');
+    		$pdf = new HTML2PDF('P','A4','en');
+    		$pdf->WriteHTML($html);
+    		$pdf->Output('transfer.pdf', 'D');
+    	}
+}

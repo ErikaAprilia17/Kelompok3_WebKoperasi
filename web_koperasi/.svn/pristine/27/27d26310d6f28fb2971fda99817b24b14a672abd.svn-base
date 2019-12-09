@@ -1,0 +1,273 @@
+<div class="content-wrapper">
+          
+          <div class="page-header">
+            <h3 class="page-title">
+              <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                <i class="mdi mdi-home"></i>                 
+              </span>
+              Selamat Datang Admin ! Hai, Silahkan pilih menu disamping untuk mengoprasikan aplikasi 
+            </h3>
+            
+           
+          </div>
+          <div class="row">
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-danger card-img-holder text-white">
+                <div class="card-body">
+                  <img src="<?= base_url('assets') ?>/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
+                  <div class="small-box bg-yellow">
+										<div class="inner">
+											<h2 class="kotak_judul"> Pinjaman Kredit</h2>
+											<table>
+												<tbody><tr>
+													<td class="h_kanan"><strong style="font-size: 20px;">3</strong></td>
+													<td> &nbsp; Transaksi Bulan Ini </td>
+												</tr>
+												<tr>
+													<td class="h_kanan">
+														<strong style="font-size: 20px;">
+															76,474,200							</strong>
+													</td>
+													<td> <b>&nbsp;Jml Tagihan Tahun Ini</b></td>
+												</tr>
+												<tr>
+													<td class="h_kanan">
+														<strong style="font-size: 20px;"> 21,891,400</strong>
+													</td>
+													<td> &nbsp; Sisa Tagihan Tahun Ini </td>
+												</tr>
+											</tbody></table>
+										</div>
+										<div class="icon">
+											<i class="fa fa-money"></i>
+										</div>
+										<a class="small-box-footer" href="<?php echo base_url()?>admin/laporan/kas_pinjaman">
+											More info
+											<i class="fa fa-arrow-circle-right"></i>
+										</a>
+									</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-info card-img-holder text-white">
+                <div class="card-body">
+                  <img src="<?= base_url('assets') ?>/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                  
+                  <div class="small-box bg-green">
+											<div class="inner">
+												<h2 class="kotak_judul"> Simpanan September 2019 </h2>
+												<table>
+													<tbody><tr>
+														<td class="h_kanan"><strong style="font-size: 20px;">1,100,000</strong></td>
+														<td> &nbsp; Simpanan Anggota</td>
+													</tr>
+													<tr>
+														<td class="h_kanan"><strong style="font-size: 20px;">10,000,000,030,000</strong></td>
+														<td> &nbsp; Penarikan Tunai</td>
+													</tr>
+													<tr>
+														<td class="h_kanan"><strong style="font-size: 20px;">-9,999,998,930,000</strong></td>
+														<td> &nbsp; Jumlah Simpanan </td>
+													</tr>
+												</tbody></table>
+											</div>
+											<div class="icon">
+												<i class="ion ion-ios7-briefcase-outline"></i>
+											</div>
+											<a class="small-box-footer" href="<?php echo base_url()?>admin/laporan/kas_simpanan">
+												More info
+												<i class="fa fa-arrow-circle-right"></i>
+											</a>
+										
+								  </div>
+								 </div>
+								</div>
+							</div>
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card-body">
+                  <img src="<?= base_url('assets') ?>/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
+                 <div class="small-box bg-purple">
+										<div class="inner">
+											<h2 class="kotak_judul"> Kas Bulan September 2019
+											 </h2>
+											<table>
+												<tbody><tr>
+													<td class="h_kanan"><strong style="font-size: 20px;">
+													63,128,100 
+											 	</strong></td>
+													<td> &nbsp; Debet</td>
+												</tr>
+												<tr>
+													<td class="h_kanan"><strong style="font-size: 20px;">
+													10,000,021,330,000 
+													</strong></td>
+													<td> &nbsp; Kredit</td>
+												</tr>
+												<tr>
+													<td class="h_kanan"><strong style="font-size: 20px;">-9,999,958,201,900</strong></td>
+													<td> &nbsp; Jumlah </td>
+												</tr>
+											</tbody></table>
+										</div>
+										<div class="icon">
+											<i class="fa fa-book"></i>
+										</div>
+										<a class="small-box-footer" href="<?php echo base_url()?>admin/laporan/saldo_kas">
+											More info
+											<i class="fa fa-arrow-circle-right"></i>
+										</a>
+									</div>       
+								 </div>
+							  </div>
+							 </div>
+						
+           <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card-body">
+                  <img src="<?= base_url('assets') ?>/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
+                 <div class="small-box bg-purple">
+										<div class="small-box bg-blue">
+											<div class="inner">
+												<h2 class="kotak_judul"> Data Anggota</h2>
+												<table>
+													<tbody><tr>
+														<td class="h_kanan"><strong style="font-size: 20px;">5</strong></td>
+														<td> &nbsp; Anggota Aktif</td>
+													</tr>
+													<tr>
+														<td class="h_kanan"><strong style="font-size: 20px;">0</strong></td>
+														<td> &nbsp; Anggota Tidak Aktif</td>
+													</tr>
+													<tr>
+														<td class="h_kanan"><strong style="font-size: 20px;">5</strong></td>
+														<td> &nbsp; Jumlah Anggota</td>
+													</tr>
+												</tbody></table>
+											</div>
+											<div class="icon">
+												<i class="ion ion-person-add"></i>
+											</div>
+											<a class="small-box-footer" href="https://www.koperasiegc.com/lap_anggota">
+												More info
+												<i class="fa fa-arrow-circle-right"></i>
+											</a>
+										</div>
+									</div>
+								 </div>
+								</div>
+							</div>
+							 <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card-body">
+                  <img src="<?= base_url('assets') ?>/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
+                 <div class="small-box bg-purple">
+										<div class="small-box bg-blue">
+											<div class="small-box bg-aqua">
+												<div class="inner">
+													<h2 class="kotak_judul"> Data Pengguna</h2>
+														<table>
+														<tbody><tr>
+															<td class="h_kanan"><strong style="font-size: 20px;">3</strong></td>
+																	<td> &nbsp; User Aktif</td>
+																</tr>
+																<tr>
+															<td class="h_kanan"><strong style="font-size: 20px;">0</strong></td>
+															<td> &nbsp; User Non-Aktif</td>
+																</tr>
+															<tr>
+															<td class="h_kanan"><strong style="font-size: 20px;">3</strong></td>
+															<td> &nbsp; Jumlah User </td>
+														</tr>
+												</tbody>
+											</table>
+											</div>
+											<div class="icon">
+												<i class="fa  fa-users"></i>
+											</div>
+											<a class="small-box-footer" href="https://www.koperasiegc.com/user">
+												More info
+												<i class="fa fa-arrow-circle-right"></i>
+											</a>
+										</div>
+									</div>
+								 </div>
+								</div>
+							</div>
+						</div>
+								 <div class="col-md-4 stretch-card grid-margin">
+             			 <div class="card bg-gradient-info card-img-holder text-white">
+                		<div class="card-body">
+                  		<img src="<?= base_url('assets') ?>/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                  
+                  			<div class="small-box bg-green">
+													<div class="small-box bg-red">
+													<div class="inner">
+													<h2 class="kotak_judul"> Data Peminjam</h2>
+													<table>
+													<tbody>
+														<tr>
+													<td class="h_kanan"><strong style="font-size: 20px;">9</strong></td>
+													<td> &nbsp; Peminjam</td>
+													</tr>
+												<tr>
+										<td class="h_kanan"><strong style="font-size: 20px;">6</strong></td>
+										<td> &nbsp; Sudah Lunas</td>
+											</tr>
+											<tr>
+										<td class="h_kanan"><strong style="font-size: 20px;">3</strong></td>
+										<td> &nbsp; Belum Lunas </td>
+										</tr>
+										</tbody>
+										</table>
+										</div>
+										<div class="icon">
+									<i class="fa fa-calendar"></i>
+										</div>
+									<a class="small-box-footer" href="https://www.koperasiegc.com/pinjaman">
+																More info
+											<i class="fa fa-arrow-circle-right"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+          <div class="row">
+            <div class="col-md-7 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <h4 class="card-title float-left">Visit And Sales Statistics</h4>
+                    <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>                                     
+                  </div>
+                  <canvas id="visit-sale-chart" class="mt-4"></canvas>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="col-md-5 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Traffic Sources</h4>
+                  <canvas id="traffic-chart"></canvas>
+                  <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>                                                      
+                </div>
+              </div>
+            </div>
+          </div>
+         
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

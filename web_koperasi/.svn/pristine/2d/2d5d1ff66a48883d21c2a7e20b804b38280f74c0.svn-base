@@ -1,0 +1,255 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3>Data
+            <small class="text-muted"> Kas Anggota </small></h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                 <i class="mdi mdi-clock menu icon"></i><div id="clock"></div>
+                <script type="text/javascript">        
+                    function tampilkanwaktu(){         //fungsi ini akan dipanggil di bodyOnLoad dieksekusi tiap 1000ms = 1detik    
+                    var waktu = new Date();            //membuat object date berdasarkan waktu saat 
+                    var sh = waktu.getHours() + "";    //memunculkan nilai jam, //tambahan script + "" supaya variable sh bertipe string sehingga bisa dihitung panjangnya : sh.length    //ambil nilai menit
+                    var sm = waktu.getMinutes() + "";  //memunculkan nilai detik    
+                    var ss = waktu.getSeconds() + "";  //memunculkan jam:menit:detik dengan menambahkan angka 0 jika angkanya cuma satu digit (0-9)
+                    document.getElementById("clock").innerHTML = (sh.length==1?"0"+sh:sh) + ":" + (sm.length==1?"0"+sm:sm) + ":" + (ss.length==1?"0"+ss:ss);
+                    }
+                </script><i class="mdi mdi-calendar menu icon"></i>
+                <!-- /*Menampilkan Waktu*/ -->
+                        <body onload="tampilkanwaktu();setInterval('tampilkanwaktu()', 1000);">        
+                        <span id="clock"></span> 
+               <!--  /*Menampilakan Hari*/ --> 
+                      <?php
+                      $hari = date('l');
+                      /*$new = date('l, F d, Y', strtotime($Today));*/
+                      if ($hari=="Sunday") {
+                       echo "Minggu";
+                      }elseif ($hari=="Monday") {
+                       echo "Senin";
+                      }elseif ($hari=="Tuesday") {
+                       echo "Selasa";
+                      }elseif ($hari=="Wednesday") {
+                       echo "Rabu";
+                      }elseif ($hari=="Thursday") {
+                       echo("Kamis");
+                      }elseif ($hari=="Friday") {
+                       echo "Jum'at";
+                      }elseif ($hari=="Saturday") {
+                       echo "Sabtu";
+                      }
+                      ?>,
+                 <!-- /*Menampilkan Tanggal*/ -->
+                      <?php
+                      $tgl =date('d');
+                      echo $tgl;
+                      $bulan =date('F');
+                      if ($bulan=="January") {
+                       echo " Januari ";
+                      }elseif ($bulan=="February") {
+                       echo " Februari ";
+                      }elseif ($bulan=="March") {
+                       echo " Maret ";
+                      }elseif ($bulan=="April") {
+                       echo " April ";
+                      }elseif ($bulan=="May") {
+                       echo " Mei ";
+                      }elseif ($bulan=="June") {
+                       echo " Juni ";
+                      }elseif ($bulan=="July") {
+                       echo " Juli ";
+                      }elseif ($bulan=="August") {
+                       echo " Agustus ";
+                      }elseif ($bulan=="September") {
+                       echo " September ";
+                      }elseif ($bulan=="October") {
+                       echo " Oktober ";
+                      }elseif ($bulan=="November") {
+                       echo " November ";
+                      }elseif ($bulan=="December") {
+                       echo " Desember ";
+                      }
+                      $tahun=date('Y');
+                      echo $tahun;
+                      ?>
+                    
+            </nav>
+          </div>
+          </ol>
+         <section class="content">
+				<!-- Styler -->
+<style type="text/css">
+.panel * {
+	font-family: "Arial","​Helvetica","​sans-serif";
+}
+.fa {
+	font-family: "FontAwesome";
+}
+.datagrid-header-row * {
+	font-weight: bold;
+}
+.messager-window * a:focus, .messager-window * span:focus {
+	color: blue;
+	font-weight: bold;
+}
+.daterangepicker * {
+	font-family: "Source Sans Pro","Arial","​Helvetica","​sans-serif";
+	box-sizing: border-box;
+}
+.glyphicon	{font-family: "Glyphicons Halflings"}
+
+.form-control {
+	height: 20px;
+	padding: 4px;
+}	
+</style>
+
+
+<div class="box box-solid box-primary">
+	<div class="box-header">
+		<h3 class="box-title">Cetak Data Pinjaman</h3>
+		<div class="box-tools pull-right">
+			<button class="btn btn-primary btn-sm" data-widget="collapse">
+				<i class="fa fa-minus"></i>
+			</button>
+		</div>
+	</div>
+	<div class="box-body">
+	<form id="fmCari" method="GET">
+	<input type="hidden" name="tgl_dari" id="tgl_dari">
+	<input type="hidden" name="tgl_samp" id="tgl_samp">
+		<table>
+			<tbody><tr>
+				<td>
+					<div id="filter_tgl" class="input-group" style="display: inline;">
+						<button class="btn btn-default" id="daterange-btn">
+							<i class="fa fa-calendar"></i> <span id="reportrange"><span>01 Jan 2019 - 31 Des 2019							</span></span>
+							<i class="fa fa-caret-down"></i>
+						</button>
+					</div>
+				</td>
+				<td>
+					<a href="javascript:void(0)" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-print" plain="false" onclick="cetak()" group="" id=""><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">Cetak Laporan</span><span class="l-btn-icon icon-print">&nbsp;</span></span></a>
+
+					<a href="javascript:void(0);" class="easyui-linkbutton l-btn l-btn-small" iconcls="icon-clear" plain="false" onclick="clearSearch()" group="" id=""><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">Hapus Filter</span><span class="l-btn-icon icon-clear">&nbsp;</span></span></a>
+				</td>
+			</tr>
+		</tbody></table>
+	</form>
+	</div>
+</div>
+<div class="box box-primary">
+<div class="box-body">
+<p></p>
+<p style="text-align:center; font-size: 15pt; font-weight: bold;"> Laporan Pinjaman Periode 01 Jan 2019 - 31 Des 2019</p>
+		<table width="20%">
+		<tbody><tr>
+			<td> Jumlah Peminjam </td>
+			<td> : </td>
+			<td> 9 </td>
+		</tr>
+		<tr>
+			<td> Peminjam Lunas </td>
+			<td> : </td>
+			<td> 6 </td>
+		</tr>
+		<tr>
+			<td> Pinjaman Belum Lunas </td>
+			<td> : </td>
+			<td> 3 </td>
+		</tr>
+		</tbody></table>	
+<p></p>
+<table class="table table-bordered">
+	<tbody><tr class="header_kolom">
+		<th style="width:5%; vertical-align: middle; text-align:center"> No. </th>
+		<th style="width:35%; vertical-align: middle; text-align:center">Keterangan </th>
+		<th style="width:20%; vertical-align: middle; text-align:center"> Jumlah  </th>
+	</tr>
+	<tr>
+		<td class="h_tengah"> 1 </td>
+		<td> Pokok Pinjaman</td>
+		<td class="h_kanan">66,800,000</td>
+	</tr>
+	<tr>
+		<td class="h_tengah"> 2 </td>
+		<td> Tagihan Pinjaman</td>
+		<td class="h_kanan">76,474,200</td>
+	</tr>
+	<tr>
+		<td class="h_tengah"> 3 </td>
+		<td> Tagihan Denda </td>
+		<td class="h_kanan">0</td>
+	</tr>
+	<tr class="header_kolom">
+		<td class="h_tengah">  </td>
+		<td> Jumlah Tagihan + Denda </td>
+		<td class="h_kanan">76,474,200</td>
+	</tr>
+	<tr>
+		<td class="h_tengah"> 4 </td>
+		<td> Tagihan Sudah Dibayar </td>
+		<td class="h_kanan">54,582,800</td>
+	</tr>
+	<tr style="background-color: #98FB98 ;">
+		<td class="h_tengah"> 5 </td>
+		<td> Sisa Tagihan </td>
+		<td class="h_kanan">21,891,400</td>
+	</tr>
+</tbody></table>
+</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function() {
+	fm_filter_tgl();
+}); // ready
+
+function fm_filter_tgl() {
+	$('#daterange-btn').daterangepicker({
+		ranges: {
+			'Tahun ini': [moment().startOf('year').startOf('month'), moment().endOf('year').endOf('month')],
+			'Tahun kemarin': [moment().subtract('year', 1).startOf('year').startOf('month'), moment().subtract('year', 1).endOf('year').endOf('month')]
+		},
+		locale: 'id',
+		showDropdowns: true,
+		format: 'YYYY-MM-DD',
+		
+					startDate: '2019-01-01',
+					endDate: '2019-12-31'
+					},
+
+	function (start, end) {
+		doSearch();
+	});
+}
+
+function clearSearch(){
+	window.location.href = 'https://www.koperasiegc.com/lap_kas_pinjaman';
+}
+
+function doSearch() {
+	var tgl_dari = $('input[name=daterangepicker_start]').val();
+	var tgl_samp = $('input[name=daterangepicker_end]').val();
+	$('input[name=tgl_dari]').val(tgl_dari);
+	$('input[name=tgl_samp]').val(tgl_samp);
+	$('#fmCari').attr('action', 'https://www.koperasiegc.com/lap_kas_pinjaman');
+	$('#fmCari').submit();	
+}
+
+function cetak () {
+	var tgl_dari = $('input[name=daterangepicker_start]').val();
+	var tgl_samp = $('input[name=daterangepicker_end]').val();
+	//$('input[name=tgl_dari]').val(tgl_dari);
+	//$('input[name=tgl_samp]').val(tgl_samp);
+	//$('#fmCari').attr('action', 'https://www.koperasiegc.com/lap_kas_pinjaman/cetak');
+	//$('#fmCari').submit();
+
+	var win = window.open('https://www.koperasiegc.com/lap_kas_pinjaman/cetak/?tgl_dari=' + tgl_dari + '&tgl_samp=' + tgl_samp + '');
+	if (win) {
+		win.focus();
+	} else {
+		alert('Popup jangan di block');
+	}
+}
+</script>
+			</section>
