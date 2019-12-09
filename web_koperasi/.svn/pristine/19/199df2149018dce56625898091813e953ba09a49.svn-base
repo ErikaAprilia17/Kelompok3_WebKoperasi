@@ -1,0 +1,21 @@
+<?php
+class data_kas extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Data Kas',
+			'page' => 'admin/master_data/v_data_kas',
+			'data_kas' => $this->db->get('data_kas')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+		
+	}
+
+	function hapus($id){
+		$this->db->where('id',$id)->delete('data_kas');
+		$this->session->set_flashdata('success_hapus','a'); 
+		redirect('admin/master_data/data_kas');
+	}
+}

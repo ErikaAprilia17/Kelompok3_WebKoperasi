@@ -1,0 +1,28 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class bayar_angsuran extends CI_Controller 
+{	
+	function _getkode() {
+		$query = $this->db->select_max('kode')->get('bayar_angsuran')->row();
+		$max_kode = $query->kode;
+		$noUrut = (int) substr($max_kode, 3, 4);
+		$noUrut++;
+		$char = "TPJ";
+		$kode = $char . sprintf("%04s", $noUrut);
+		return $kode;
+	}
+	public function index()
+	{
+		
+		$data = array(
+			'title' => 'Bayar Angsuran',
+			'page' => 'admin/pinjaman/v_bayar_angsuran',
+			'data_angsuran' => $this->db->select('a.*,b.tanggal_pinjaman,b.id_anggota,b.id_angsuran')
+									->from('bayar_angsuran a')
+									->join('data_pinjaman b','a.id=b.id')
+									->get()->result(),
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+}

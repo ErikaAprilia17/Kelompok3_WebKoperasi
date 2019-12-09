@@ -1,0 +1,124 @@
+<?php
+class penarikan_tunai extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Data Penarikan Tunai',
+			'page' => 'admin/simpanan/v_penarikan_tunai',
+			'data_penarikan' => $this->db->select('a.*,b.nama_anggota,c.departemen,d.jenis_simpanan')
+										->from('penarikan_tunai a')
+										->join('data_anggota b','a.id_anggota=b.id_anggota')
+										->join('departemen c','a.id_departemen=c.id')
+										->join('jenis_simpanan d','a.id_jenis_simpanan=d.id')
+										->order_by('a.kode_transaksi ASC')
+										->get()->result(),
+
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function edit($id){
+		$data = array(
+			'title' => 'Edit Data Penarikan Tunai',
+			'page' => 'admin/simpanan/v_edit_penarikan',
+			'data_penarikan' => $this->db->where('id',$id)->get('penarikan_tunai')->row(),
+			'departemen' => $this->db->get('departemen')->result(),
+			'jenis_simpanan' => $this->db->get('jenis_simpanan')->result(),
+			'data_anggota' => $this->db->get('data_anggota')->result(),
+			
+
+			'data_anggota' => $this->db->get('data_anggota')->result(),
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function _getkode(){
+		$query = $this->db->select_max('kode_transaksi')->get('penarikan_tunai')->row();
+		$max_kode = $query->kode_transaksi;
+		$noUrut = (int) substr($max_kode, 3, 4);
+		$noUrut++;
+		$char = "TRK";
+		$kodeBarang = $char . sprintf("%04s", $noUrut);
+		return $kodeBarang;
+	}
+
+	function update(){
+		$id = $this->input->post('id');
+		$kode_transaksi = $this->_getkode();
+		$tanggal_transaksi = $this->input->post('tanggal_transaksi');
+		$id_anggota = $this->input->post('id_anggota');
+		$departemen = $this->input->post('id_departemen');
+		$jenis_penarikan = $this->input->post('id_jenis_simpanan');
+		$jumlah = $this->input->post('jumlah');
+		$user = $this->input->post('user');
+
+		$data = array(
+			'kode_transaksi' => $kode_transaksi,
+			'tanggal_transaksi' => $tanggal_transaksi,
+			'id_anggota' => $id_anggota,		
+			'id_departemen' => $departemen,
+			'id_jenis_simpanan' => $jenis_penarikan,
+			'jumlah' => $jumlah,
+			'user' => $user,
+		);
+
+		$where = array(
+		'id' => $id
+		);
+ 
+		$this->db->where($where);
+		$this->db->update('penarikan_tunai',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('admin/simpanan/penarikan_tunai');
+	}
+
+	function tambah(){
+		$data = array(
+			'title' => 'Tambah Penarikan Tunai',
+			'page' => 'admin/simpanan/v_tambah_penarikan',
+			'jenis_simpanan' => $this->db->get('jenis_simpanan')->result(),
+			'data_anggota' => $this->db->get('data_anggota')->result(),
+			'departemen'=> $this->db->get('departemen')->result(),
+			'data_anggota' => $this->db->get('data_anggota')->result(),
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function insert(){
+		$kode_transaksi = $this->_getkode();
+		$tanggal_transaksi = $this->input->post('tanggal_transaksi');
+		$id_anggota = $this->input->post('id_anggota');
+		$departemen = $this->input->post('departemen');
+		$jenis_penarikan = $this->input->post('jenis_simpanan');
+		$nama = $this->input->post('nama');
+		$departemen = $this->input->post('departemen');
+		$jumlah = $this->input->post('jumlah');
+		$user = $this->input->post('user');
+
+		$data = array(
+			'kode_transaksi' => $kode_transaksi,
+			'tanggal_transaksi' => $tanggal_transaksi,
+			'id_anggota' => $id_anggota,
+			'id_departemen' => $departemen,
+			'id_jenis_simpanan' => $jenis_penarikan,
+			'jumlah' => $jumlah,
+			'user' => $user,
+			
+		);
+
+		$this->db->insert('penarikan_tunai',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		
+		redirect('admin/simpanan/penarikan_tunai');
+	}
+
+	 function hapus($id){
+ 
+  		$this->db->where('id', $id);
+  		$this->db->delete('penarikan_tunai');
+  		$this->session->set_flashdata('success_hapus','a'); 
+  		redirect('admin/simpanan/penarikan_tunai');
+ }
+  }
