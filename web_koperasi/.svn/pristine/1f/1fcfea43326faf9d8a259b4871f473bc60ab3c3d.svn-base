@@ -1,0 +1,85 @@
+        <div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Edit Profile
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/editprofile">edit</a></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                   <form class="forms-sample" action="<?php echo base_url()?>admin/editprofile/update/" method="post">
+                    <input type="hidden" class="form-control" name="id" value="<?= $data->id?>">
+                    <div class="form-group">
+                      <label for="nama"><b>Nama Lengkap</b></label>
+                      <input type="text" class="form-control" name="nama" id="nama" placeholder="nama" value="<?= $data->nama?>">
+                    </div>
+                    <div class="form-group">
+                       <label for="email"><b>Alamat Email</b></label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="email" value="<?= $data->email?>">
+                    </div>
+                    <div class="form-group">
+                       <label for="ttl"><b>Tempat Tanggal Lahir</b></label>
+                      <input type="text" class="form-control" name="ttl" id="ttl" placeholder="ttl" value="<?= $data->ttl?>">
+                    </div>
+                    <div class="form-group">
+                       <label for="jk"><b>Jenis Kelamin</b></label>
+                      <select type="jk" class="form-control" name="jk" id="jk" placeholder="jk" value="<?= $data->jk?>">
+                        <option>--Pilih Jenis Kelamin--</option>
+                          <option>Laki-Laki</option>
+                          <option>Perempuan</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                       <label for="no_tlpon"><b>No Telfun Email</b></label>
+                      <input type="text" class="form-control" name="no_tlpon" id="no_tlpon" placeholder="no_tlpon" value="<?= $data->no_tlpon?>">
+                    </div>
+                    <div class="form-group">
+                       <label for="status"><b>Status</b></label>
+                      <select type="text" class="form-control" name="status" id="status" placeholder="status" value="<?= $data->status?>">
+                          <option>Sudah Menikah</option>
+                          <option>Belum Menikah</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="col-form-label">Alamat</label>
+                      <input type="text" class="form-control" value="<?= $data->alamat ?>" />
+                    </div>
+                    <div class="form-group">
+                       <label for="kota"><b>Kota</b></label>
+                      <input type="text" class="form-control" name="kota" id="kota" placeholder="kota" value="<?= $data->kota?>">
+                    </div>
+                    <div class="form-group">
+                       <label for="agama"><b>Agama</b></label>
+                      <select type="text" class="form-control" name="agama" id="agama" placeholder="agama" value="<?= $data->agama?>">
+                          <option>Islam</option>
+                          <option>Protestan</option>
+                          <option>Katolik </option>
+                          <option>Hindu</option>
+                          <option>Buddha</option>
+                          <option>Khonghucu </option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                       <label for="pekerjaan"><b>Pekerjaan</b></label>
+                      <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" placeholder="pekerjaan" value="<?= $data->pekerjaan?>">
+                    </div>
+                    <!-- <div class="form-group">
+                      <label>File upload</label>
+                      <input type="file" class="form-control" name="Photo_id" >
+                      <div class="input-group col-xs-12">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <span class="input-group-append">
+                          <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                        </span>
+                      </div>
+                    </div> -->
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Simpan</button>
+                    <a href="<?php echo base_url()?>admin/editprofile" class="btn btn-light">Kembali</a>
+                  </form>
+                </div>
+              </div>
+            </div>
