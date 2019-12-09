@@ -1,0 +1,61 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Tambah Data Transfer
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/transaksi_kas/transfer">Transaksi Transfer Kas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                   <form class="forms-sample" action="<?php echo base_url()?>admin/transaksi_kas/transfer/insert" method="post">
+                    <input type="hidden" class="form-control" name="id">
+                    <div class="form-group">
+                      <label for="kode_transaksi"><b>Kode Transaksi</b></label>
+                      <input type="text" class="form-control" name="kode_transaksi" id="kode_transaksi" placeholder="Kode Transaksi">
+                    </div>
+                    <div class="form-group">
+                      <label for="tanggal_transaksi"><b>Tanggal Transaksi</b></label>
+                      <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" placeholder="Tanggal Transaksi">
+                    </div>
+                    <div class="form-group">
+                      <label for="uraian"><b>Uraian</b></label>
+                      <input type="text" class="form-control" name="uraian" id="uraian" placeholder="Uraian">
+                    </div>
+                    <div class="form-group">
+                      <label for="jumlah"><b>Jumlah</b></label>
+                      <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah">
+                    </div>
+                    <div class="form-group">
+                      <label for="untuk_kas"><b>Dari Kas</b></label>
+                        <select class="form-control" id="untuk_kas" name="dari_kas">
+                        <?php foreach( $data as $data_kas){ ?>
+                          <option value="<?= $data_kas->id ?>"><?= $data_kas->nama_kas ?></option>
+                        <?php } ?>
+                        </select>
+                      </div>
+                   <div class="form-group">
+                      <label for="untuk_kas"><b>Untuk Kas</b></label>
+                        <select class="form-control" id="untuk_kas" name="untuk_kas">
+                        <?php foreach( $data as $data_kas){ ?>
+                          <option value="<?= $data_kas->id ?>"><?= $data_kas->nama_kas ?></option>
+                        <?php } ?>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="user"><b>User</b></label>
+                      <input type="text" class="form-control" name="user" id="user" placeholder="User">
+                    </div>
+                   <button type="submit" class="btn btn-gradient-primary btn-icon-text"><i class="mdi mdi-file-check btn-icon-prepend"></i>Submit</button>
+                    <a href="<?php echo base_url()?>admin/transaksi_kas/transfer" class="btn btn-gradient-danger btn-icon-text"><i class="mdi mdi-close-circle btn-icon-prepend"></i>Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            

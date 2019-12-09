@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Cetak PDF</title>
+</head>
+<body>
+<h1 style="text-align: center;">Laporan Data Saldo Kas</h1>
+
+<table border="1" width="100%">
+<thead>
+                      <tr>
+                        
+                        <th>No</th>
+                        <th>Nama Kas</th>
+                        <th>Saldo</th>
+                        
+                       
+                        
+                      </tr>
+                    </thead>
+                   <tbody>
+                      <?php 
+                          foreach ($data_saldo as $saldo_kas){ 
+                          	$id = 1;
+                                        ?>
+                              <tr>
+                          
+                          <td><?php echo $id++ ?></td>
+                          <td><?php echo $saldo_kas->nama_kas ?></td>
+                          <td><?php echo $saldo_kas->saldo ?></td>
+                          
+
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+
+</table>
+</body>
+</html>
