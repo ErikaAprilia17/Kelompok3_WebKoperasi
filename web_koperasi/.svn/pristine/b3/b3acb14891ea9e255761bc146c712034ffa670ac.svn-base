@@ -1,0 +1,111 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Edit Data Pinjaman
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/pinjaman/data_pinjaman">edit</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data Pinjaman</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                    <form class="forms-sample" action="<?php echo base_url()?>admin/pinjaman/data_pinjaman/update" method="post">
+                    <input type="hidden" class="form-control" name="id" value="<?= $data_pinjam->id?>"> 
+                    <div class="form-group">
+                      <label for="tanggal_pinjaman"><b>Tanggal Pinjaman</b></label>
+                      <input type="date" class="form-control" name="tanggal_pinjaman" id="tanggal_pinjaman" placeholder="Tanggal Pinjaman" value="<?= $data_pinjam->tanggal_pinjaman?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="nama_anggota"><b>Nama Anggota</b></label>
+                      <input class="form-control"  name="nama_anggota" id="id_anggota" value="<?= $nama_anggota->nama_anggota ?>" readonly />
+                    </div>
+                    <div class="form-group">
+                      <label for="nama_barang"><b>Nama Barang</b></label>
+                      <select name="nama_barang" id="id_barang" class="form-control" onchange='changeValue(this.value)' required>
+                      <option value="">-Pilih-</option>
+                      <?php foreach($nama_barang as $data){ ?>
+                          <option value="<?= $data->id ?>"><?= $data->nama_barang ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Harga Barang</label>
+                  <input class="form-control"  name="harga" id="harga" readonly />      
+                  </div>
+                    <div class="form-group">
+                      <label for="lama_angsuran"><b>Lama Angsuran</b></label>
+                      <select class="form-control" id="lama_angsuran" name="id_angsuran">
+                        <?php foreach($lama_angsuran as $data){ ?>
+                          <option value="<?= $data->id ?>"><?= $data->lama_angsuran ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                      <div class="form-group">
+                      <label for="bunga"><b>Bunga</b></label>
+                      <input class="form-control"  name="bunga" id="bunga" value="<?= $bunga->suku_bunga_pinjaman ?>" readonly />
+                    </div>
+                    <div class="form-group">
+                      <label for="biaya_admin"><b>Biaya Admin</b></label>
+                      <input class="form-control"  name="biaya_admin" id="biaya_admin" value="<?= $biaya_admin->biaya_administrasi ?>" readonly /> 
+                    </div>
+                    <div class="form-group">
+                      <label for="data_kas"><b>Ambil Dari Kas</b></label>
+                      <select class="form-control" id="data_kas" name="id_kas">
+                        <?php foreach($data_kas as $data){ ?>
+                          <option value="<?= $data->id ?>"><?= $data->nama_kas ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="keterangan"><b>Keterangan</b></label>
+                      <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan">
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <a href="<?php echo base_url()?>admin/pinjaman/data_pinjaman" class="btn btn-light">Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            <script type="text/javascript"> 
+
+              $( "#id_barang" ).change(function() {
+                var id = $(this).val();
+                $.ajax({
+                    dataType: "json",
+                    url:BASE_URL+'admin/pinjaman/data_pinjaman/get_harga/'+id,
+                    success: function(res){
+                      $("#harga").val(res.harga);
+                    }
+                  });
+            });
+
+              $("#bunga" ).change(function() {
+                var id = $(this).val();
+                $.ajax({
+                    dataType: "json",
+                    url:BASE_URL+'admin/pinjaman/data_pinjaman/get_bunga/'+id,
+                    success: function(res){
+                      $("#bunga").val(res.bunga);
+                    }
+                  });
+            });
+
+              $("#biaya_admin" ).change(function() {
+                var id = $(this).val();
+                $.ajax({
+                    dataType: "json",
+                    url:BASE_URL+'admin/pinjaman/data_pinjaman/get_biaya/'+id,
+                    success: function(res){
+                      $("#biaya_admin").val(res.biaya_admin);
+                    }
+                  });
+            });
+            </script>
+
+
+         

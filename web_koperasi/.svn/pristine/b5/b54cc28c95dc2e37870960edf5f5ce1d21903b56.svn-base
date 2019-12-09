@@ -1,0 +1,49 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Edit Data Barang
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/master_data/data_barang">edit</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data Barang</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                   <form class="forms-sample" action="<?php echo base_url()?>admin/master_data/data_barang/update" method="post">
+                    <input type="hidden" class="form-control" name="id" value="<?= $barang->id?>">
+                    <div class="form-group">
+                      <label for="nama_barang"><b>Nama Barang</b></label>
+                      <input type="text" class="form-control" name="nama_barang" id="nama_barang" placeholder="Nama Barang" value="<?= $barang->nama_barang?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="type"><b>Type</b></label>
+                      <input type="text" class="form-control" name="type" id="type" placeholder="Type" value="<?= $barang->type?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="merk"><b>Merk</b></label>
+                      <input type="text" class="form-control" name="merk" id="merk" placeholder="Merk" value="<?= $barang->merk?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="harga"><b>Harga</b></label>
+                      <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga Satuan" value="<?= $barang->harga?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="jumlah_barang"><b>Jumlah Barang</b></label>
+                      <input type="text" class="form-control" name="jumlah_barang" id="jumlah_barang" placeholder="Jumlah Barang" value="<?= $barang->jumlah_barang?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="ket"><b>Keterangan</b></label>
+                      <input type="text" class="form-control" name="ket" id="ket" placeholder="Keterangan" value="<?= $barang->ket?>">
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <a href="<?php echo base_url()?>admin/master_data/data_barang" class="btn btn-light">Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            

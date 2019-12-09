@@ -1,0 +1,45 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Edit Setoran Tunai
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/simpanan/setoran_tunai">edit</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Setoran Tunai</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                   <form class="forms-sample" action="<?php echo base_url()?>admin/simpanan/setoran_tunai/update/" method="post">
+                    <input type="hidden" class="form-control" name="id" >
+                    <div class="form-group">
+                      <label for="tgl_transaksi"><b>Tanggal Transaksi</b></label>
+                      <input type="date" class="form-control" name="tgl_transaksi" id="tgl_transaksi" placeholder="tgl_transaksi" >
+                    </div>
+                    <div class="form-group">
+                      <label for="nama_anggota"><b>Nama Anggota</b></label>
+                      <input type="text" class="form-control" name="nama_anggota" id="nama_anggota" placeholder="nama_anggota">
+                    </div>
+                    <div class="form-group">
+                      <label for="jenis_simpanan"><b>Jenis Simpanan</b></label>
+                        <select class="form-control" id="jenis_simpanan" name="jenis_simpanan">
+                          <option>Simpanan Wajib</option>
+                          <option>Simpanan Pokok</option>
+                          <option>Simpanan Sukarela</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                      <label for="jumlah"><b>Jumlah Simpanan</b></label>
+                      <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="jumlah">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <a href="<?php echo base_url()?>admin/simpanan/setoran_tunai" class="btn btn-light">Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>

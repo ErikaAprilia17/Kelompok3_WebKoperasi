@@ -1,0 +1,66 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              Tambah Data Jenis Akun
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo base_url()?>admin/master_data/jenis_akun">Jenis Akun</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="card">
+            <div class="card-body">
+                   <form class="forms-sample" action="<?php echo base_url()?>admin/master_data/jenis_akun/insert" method="post">
+                    <input type="hidden" class="form-control" name="id">
+                    
+                    <div class="form-group">
+                      <label for="jenis_akun"><b>Jenis Transaksi</b></label>
+                      <input type="text" class="form-control" name="jenis_akun" id="jenis_akun" placeholder="Jenis Transaksi">
+                    </div>
+                    <div class="form-group">
+                      <label for="akun"><b>Akun</b></label>
+                        <select class="form-control" id="akun" name="akun">
+                                  <option>--Pilih Akun--</option>
+                                  <option>Aktiva</option>
+                                  <option>Passiva</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                      <label for="pemasukan"><b>Pemasukan</b></label>
+                        <select class="form-control" id="pemasukan" name="pemasukan">
+                                  <option>--Pilih Pemasukan--</option>
+                                  <option>Y</option>
+                                  <option>N</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                      <label for="pengeluaran"><b>Pengeluaran</b></label>
+                        <select class="form-control" id="pengeluaran" name="pengeluaran">
+                                <option>--Pilih Pengeluaran--</option>
+                                <option>Y</option>
+                                <option>N</option>
+                      </select>
+                      </div>
+                       <div class="form-group">
+                      <label for="aktif"><b>Aktif</b></label>
+                        <select class="form-control" id="aktif" name="aktif">
+                                  <option>--Pilih--</option>
+                                  <option>Y</option>
+                                  <option>N</option>
+                      </select>
+                      </div>
+                       <div class="form-group">
+                      <label for="laba_rugi"><b>Laba Rugi</b></label>
+                      <input type="text" class="form-control" name="laba_rugi" id="laba_rugi" placeholder="Jumlah Laba Rugi">
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <a href="<?php echo base_url()?>admin/master_data/jenis_akun" class="btn btn-light">Cancel</a>
+                  </form>
+              </div>
+            </div>
+                </div>
+              </div>
+            </div>
+            

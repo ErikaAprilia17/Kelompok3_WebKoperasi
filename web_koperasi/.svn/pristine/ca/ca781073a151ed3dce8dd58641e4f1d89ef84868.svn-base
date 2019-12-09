@@ -1,0 +1,193 @@
+<div class="content-wrapper">
+         <div class="page-header">
+           <h3>Laporan 
+            <small class="text-muted">Saldo Kas </small></h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+           <i class="mdi mdi-clock menu icon"></i><div id="clock"></div>
+                <script type="text/javascript">        
+                    function tampilkanwaktu(){        
+                    var waktu = new Date();            
+                    var sh = waktu.getHours() + "";    
+                    var sm = waktu.getMinutes() + "";   
+                    var ss = waktu.getSeconds() + "";  
+                    document.getElementById("clock").innerHTML = (sh.length==1?"0"+sh:sh) + ":" + (sm.length==1?"0"+sm:sm) + ":" + (ss.length==1?"0"+ss:ss);
+                    }
+                </script><i class="mdi mdi-calendar menu icon"></i>
+               
+                        <body onload="tampilkanwaktu();setInterval('tampilkanwaktu()', 1000);">        
+                        <span id="clock"></span> 
+              
+                      <?php
+                      $hari = date('l');
+                      if ($hari=="Sunday") {
+                       echo "Minggu";
+                      }elseif ($hari=="Monday") {
+                       echo "Senin";
+                      }elseif ($hari=="Tuesday") {
+                       echo "Selasa";
+                      }elseif ($hari=="Wednesday") {
+                       echo "Rabu";
+                      }elseif ($hari=="Thursday") {
+                       echo("Kamis");
+                      }elseif ($hari=="Friday") {
+                       echo "Jum'at";
+                      }elseif ($hari=="Saturday") {
+                       echo "Sabtu";
+                      }
+                      ?>,
+                
+                      <?php
+                      $tgl =date('d');
+                      echo $tgl;
+                      $bulan =date('F');
+                      if ($bulan=="January") {
+                       echo " Januari ";
+                      }elseif ($bulan=="February") {
+                       echo " Februari ";
+                      }elseif ($bulan=="March") {
+                       echo " Maret ";
+                      }elseif ($bulan=="April") {
+                       echo " April ";
+                      }elseif ($bulan=="May") {
+                       echo " Mei ";
+                      }elseif ($bulan=="June") {
+                       echo " Juni ";
+                      }elseif ($bulan=="July") {
+                       echo " Juli ";
+                      }elseif ($bulan=="August") {
+                       echo " Agustus ";
+                      }elseif ($bulan=="September") {
+                       echo " September ";
+                      }elseif ($bulan=="October") {
+                       echo " Oktober ";
+                      }elseif ($bulan=="November") {
+                       echo " November ";
+                      }elseif ($bulan=="December") {
+                       echo " Desember ";
+                      }
+                      $tahun=date('Y');
+                      echo $tahun;
+                      ?>
+              </ol>
+            </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Cetak Saldo Kas</h4>
+
+
+                  <a href="<?php echo base_url()?>admin/laporan/transaksi_kas/cetak" class="btn btn-gradient-primary btn-rounded btn-fw"><i class="mdi mdi-print-outline menu icon ">Cetak Laporan</i></a>
+                                            
+                  <div class="box box-primary">
+<div class="box-body">
+<p></p>
+	<p style="text-align:center; font-size: 15pt; font-weight: bold;"> Laporan Saldo Kas Periode September 2019</p>
+	<table class="table table-bordered">
+					<thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Nama Kas </th>
+                        <th>Saldo</th>
+                        
+                      </tr>
+                    </thead>
+	
+		<tr bgcolor="#FFFFEE" class="header_kolom">
+				<td class="header_kanan" colspan="7"> <strong>SALDO SEBELUMNYA</strong></td>
+				<td class="header_kanan" colspan="1"><strong>0</strong></td>
+		</tr>
+                   <tbody>
+                      <?php 
+                           $no = 1;
+                          if(is_array($data_saldo))
+                          foreach($data_saldo as $data_saldo){ 
+                                        ?>
+                              <tr>
+                          <td><?php echo $no++ ?></td>
+                          <td><?php echo $data_saldo->nama_kas ?></td>
+                          <td><?php echo $data_saldo->saldo?></td>
+
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+    <tr bgcolor="#FFFFEE" class="header_kolom">
+				<td class="header_kanan" colspan="7"> <strong>Jumlah</strong></td>
+				<td class="header_kanan" colspan="1"><strong>0</strong></td>
+		</tr>
+		 <tr bgcolor="#FFFFEE" class="header_kolom">
+				<td class="header_kanan" colspan="7"> <strong>Saldo</strong></td>
+				<td class="header_kanan" colspan="1"><strong>0</strong></td>
+		</tr>
+
+
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+<script type="text/javascript">
+$(document).ready(function() {
+	fm_filter_tgl();
+}); // ready
+
+function fm_filter_tgl() {
+	$('#daterange-btn').daterangepicker({
+		ranges: {
+			'Hari ini': [moment(), moment()],
+			'Kemarin': [moment().subtract('days', 1), moment().subtract('days', 1)],
+			'7 Hari yang lalu': [moment().subtract('days', 6), moment()],
+			'30 Hari yang lalu': [moment().subtract('days', 29), moment()],
+			'Bulan ini': [moment().startOf('month'), moment().endOf('month')],
+			'Bulan kemarin': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')],
+			'Tahun ini': [moment().startOf('year').startOf('month'), moment().endOf('year').endOf('month')],
+			'Tahun kemarin': [moment().subtract('year', 1).startOf('year').startOf('month'), moment().subtract('year', 1).endOf('year').endOf('month')]
+		},
+		locale: 'id',
+		showDropdowns: true,
+		format: 'YYYY-MM-DD',
+		
+					startDate: '2019-01-01',
+					endDate: '20-12-31'
+					},
+
+	function (start, end) {
+		doSearch();
+	});
+}
+
+function clearSearch(){
+	window.location.href = 'http://localhost/web_koperasi/admin/laporan/transaksi_kas';
+}
+
+function doSearch() {
+	var tgl_dari = $('input[name=daterangepicker_start]').val();
+	var tgl_samp = $('input[name=daterangepicker_end]').val();
+	$('input[name=tgl_dari]').val(tgl_dari);
+	$('input[name=tgl_samp]').val(tgl_samp);
+	$('#fmCari').attr('action', 'http://localhost/web_koperasi/admin/laporan/transaksi_kas');
+	$('#fmCari').submit();	
+}
+
+function cetak () {
+	var tgl_dari = $('input[name=daterangepicker_start]').val();
+	var tgl_samp = $('input[name=daterangepicker_end]').val();
+	//$('input[name=tgl_dari]').val(tgl_dari);
+	//$('input[name=tgl_samp]').val(tgl_samp);
+	//$('#fmCari').attr('action', 'https://www.koperasiegc.com/lap_trans_kas/cetak');
+	//$('#fmCari').submit();
+
+	var win = window.open('https://www.koperasiegc.com/lap_trans_kas/cetak/?tgl_dari=' + tgl_dari + '&tgl_samp=' + tgl_samp + '');
+	if (win) {
+		win.focus();
+	} else {
+		alert('Popup jangan di block');
+	}
+
+}
+</script>
+			</section>
+

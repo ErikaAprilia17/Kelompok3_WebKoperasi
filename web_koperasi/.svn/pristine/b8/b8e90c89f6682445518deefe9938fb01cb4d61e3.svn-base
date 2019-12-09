@@ -1,0 +1,190 @@
+<?php
+class data_pinjaman extends CI_Controller {
+
+function __construct(){
+		parent::__construct();		
+		$this->load->model('m_data');
+ 
+	}
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Data Pinjaman',
+			'page' => 'admin/pinjaman/v_data_pinjaman',
+			'data_pinjam' => $this->db->select('a.*,b.username,b.nama_anggota,c.nama_barang,c.harga,d.lama_angsuran, e.suku_bunga_pinjaman, e.biaya_administrasi, f.username')
+									->from('data_pinjaman a')
+									->join('data_anggota b','a.id_anggota=b.id_anggota')
+									->join('data_barang c','a.id_barang=c.id')
+									->join('lama_angsuran d', 'a.id_angsuran=d.id')
+									->join('suku_bunga e', 'a.id_bunga=e.id')
+									->join('data_pengguna f', 'a.id_user=f.id')
+									->get()->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	function get_harga($id){
+		$data = $this->db->where('id',$id)->get('data_barang')->row();
+		echo json_encode($data);
+	}
+
+	function get_bunga($id){
+		$data = $this->db->where('id',$id)->get('suku_bunga')->row();
+		echo json_encode($data);
+	}
+	function get_biaya($id){
+		$data = $this->db->where('id',$id)->get('suku_bunga')->row();
+		echo json_encode($data);
+	}
+	function _getkode() {
+		$query = $this->db->select_max('kode_pinjaman')->get('data_pinjaman')->row();
+		$max_kode = $query->kode_pinjaman;
+		$noUrut = (int) substr($max_kode, 3, 4);
+		$noUrut++;
+		$char = "PJ";
+		$kodePinjaman = $char . sprintf("%04s", $noUrut);
+		return $kodePinjaman;
+	}
+function tambah(){
+		$data = array(
+			'title' => 'Tambah Data Pinjaman',
+			'page' => 'admin/pinjaman/v_tambah_pinjaman',
+			// 'data_pinjam' => $this->db->where('id',$id)->get('data_pinjaman')->row(),
+			'nama_anggota'=> $this->db->get('data_anggota')->result(),
+			'nama_barang' => $this->db->get('data_barang')->result(),
+			'lama_angsuran' => $this->db->get('lama_angsuran')->result(),
+			'data_kas' => $this->db->get('data_kas')->result(),
+			'bunga' => $this->db->get('suku_bunga')->row(),
+			'biaya_admin' => $this->db->get('suku_bunga')->row(),
+			'harga' => $this->db->get('data_barang')->row(),
+			'id_user' => $this->db->get('data_pengguna')->row(),
+
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	
+	
+	function insert(){
+		$kode_pinjaman = $this->_getkode();
+		$tanggal_peminjaman = $this->input->post('tanggal_pinjaman');
+		$id_anggota = $this->input->post('nama_anggota');
+		$id_barang = $this->input->post('id_barang');
+		$id_kas = $this->input->post('id_kas');
+		$id_lama_angsuran = $this->input->post('id_angsuran');
+		$lunas = $this->input->post('lunas');
+		$user = $this->input->post('user');
+		$aksi = $this->input->post('aksi');
+		$bunga = $this->input->post('bunga');
+		$biaya_admin = $this->input->post('biaya_admin');
+		$harga = $this->input->post('harga');
+		$id_user = $this->input->post('id_user');
+		$keterangan = $this->input->post('keterangan');
+		$lama_angsuran = $this->db->where('id',$id_lama_angsuran)->get('lama_angsuran')->row()->lama_angsuran;
+		$pokok_angsuran = $harga/$lama_angsuran;
+		$bunga_pinjaman = $pokok_angsuran/$bunga/100;
+		$jumlah_angsuran = $biaya_admin+round($pokok_angsuran,1)+$bunga_pinjaman;
+		$total_tagihan = $jumlah_angsuran*$lama_angsuran;
+
+		$data = array(
+			'kode_pinjaman' => $kode_pinjaman,
+			'tanggal_pinjaman' => $tanggal_peminjaman,
+			'id_anggota' => $id_anggota,
+			'id_kas' => $id_kas,
+			'total_tagihan' => $total_tagihan,
+			'lunas' => $lunas,
+			'id_barang' => $id_barang,
+			'id_bunga' => $bunga,
+			'biaya_admin' =>$biaya_admin,
+			'harga_barang' =>$harga,
+			'id_user' =>$id_user,
+			'keterangan' => $keterangan,
+			'lama_angsuran' => $lama_angsuran,
+			'id_angsuran' => $id_lama_angsuran,
+			'pokok_angsuran' => $pokok_angsuran,
+			'bunga_pinjaman' => $bunga_pinjaman,
+			'jumlah_angsuran' =>$jumlah_angsuran,
+			'total_tagihan' =>$total_tagihan,
+		);
+
+		$this->db->insert('data_pinjaman',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('admin/pinjaman/data_pinjaman');
+	}
+	function edit($id){
+		$data_pinjam = $this->db->where('id',$id)->get('data_pinjaman')->row();
+		$data = array(
+			'title' => 'Edit Data Pinjaman',
+			'page' => 'admin/pinjaman/v_edit_pinjaman',
+			'data_pinjam' => $data_pinjam,
+			'data_anggota'=> $this->db->where('id_anggota',$data_pinjam->id_anggota)->get('data_anggota')->row(),
+			'data_barang' => $this->db->where('id',$data_pinjam->id_barang)->get('data_barang')->row(),
+			'harga' => $this->db->where('id',$data_pinjam->harga)->get('data_barang')->row(),
+			'lama_angsuran' => $this->db->get('lama_angsuran')->result(),
+			'data_kas' => $this->db->get('data_kas')->result(),
+			'bunga' => $this->db->where('id',$data_pinjam->id_bunga)->get('suku_bunga')->row(),
+			'biaya_admin' => $this->db->get('suku_bunga')->row(),
+			'id_user' => $this->db->get('data_pengguna')->row(),
+
+		);
+		$this->load->view('admin/layout/template',$data);
+	
+
+	
+	function update(){
+		$kode = $this->input->post('kode');
+		$tanggal_peminjaman = $this->input->post('tanggal_peminjaman');
+		$id_anggota = $this->input->post('id_anggota');
+		$id_barang = $this->input->post('id_barang');
+		$id_kas = $this->input->post('id_kas');
+		$lama_angsuran = $this->input->post('lama_angsuran');
+		$hitungan = $this->input->post('hitungan');
+		$total_tagihan = $this->input->post('total_tagihan');
+		$lunas = $this->input->post('lunas');
+		$id_user = $this->input->post('id_user');
+		$aksi = $this->input->post('aksi');
+		$bunga = $this->input->post('bunga');
+		$biaya_admin = $this->input->post('biaya_admin');
+		$harga = $this->input->post('harga');
+		$keterangan = $this->input->post('keterangan');
+
+		$data = array(
+			'kode' => $kode,
+			'tanggal_peminjaman' => $tanggal_peminjaman,
+			'id_anggota' => $id_anggota,
+			'id_kas' => $id_kas,
+			'hitungan' => $hitungan,
+			'total_tagihan' => $total_tagihan,
+			'lunas' => $lunas,
+			'id_user' => $id_user,
+			'aksi' => $aksi,
+			'id_barang' => $id_barang,
+			'bunga' => $bunga,
+			'biaya_admin' =>$biaya_admin,
+			'harga' =>$harga,
+			'keterangan' => $keterangan,
+		);
+
+		$where = array(
+			'id' => $id
+		);
+
+		$this->db->where($where);
+		$this->db->update('data_pinjaman',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('admin/pinjaman/data_pinjaman');
+	}
+
+
+	 function hapus($id){
+ 
+  		$this->db->where('id', $id);
+  		$this->db->delete('data_pinjaman');
+  		$this->session->set_flashdata('success_hapus','a'); 
+  		redirect('admin/pinjaman/data_pinjaman');
+ }
+
+}
+}

@@ -1,0 +1,64 @@
+<?php
+class transaksi_kas extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'transaksi_kas',
+			'page' => 'admin/laporan/v_transaksi_kas',
+			'data_transaksi' => $this->db->select('a.*,b.kode_transaksi,b.id_kas,b.id_akun,b.jumlah,c.kode_transaksi,c.id_kas,c.id_akun,c.jumlah')
+										->from('transaksi_kas a')
+										->join('pemasukan b','a.kode_transaksi=b.kode_transaksi')
+										->join('pengeluaran c','a.kode_transaksi=c.kode_transaksi')
+										->get('transaksi_kas')->result(),
+			'bulan'=> $this->db->get('bulan')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+		}
+		function update(){
+	$kode_transaksi 		= $this->input->post('kode_transaksi');
+	$tanggal_transaksi 		= $this->input->post('tanggal_transaksi');
+	$akun_transaksi 		= $this->input->post('akun_transaksi');
+	$untuk_kas 				= $this->input->post('untuk_kas');
+	$dari_kas 				= $this->input->post('dari_kas');
+	$debet 					= $this->input->post('debet');
+	$kredit 				= $this->input->post('kredit');
+	$saldo 					= $this->input->post('saldo');
+ 
+	$data = array(
+		'kode_transaksi' 	=> $kode_transaksi,
+		'tanggal_transaksi' => $tanggal_transaksi,
+		'akun_transaksi' 	=> $akun_transaksi,
+		'untuk_kas' 		=> $untuk_kas,
+		'dari_kas' 			=> $dari_kas,
+		'debet' 			=> $debet,
+		'kredit' 			=> $kredit,
+		'saldo'				=> $saldo,
+		
+	);
+ 
+	$where = array(
+		'id' => 1
+	);
+ 
+	$this->db->where($where);
+	$insert = $this->db->insert('transaksi_kas',$data);
+	redirect('admin/laporan/transaksi_kas');
+
+}
+
+	public function cetak()
+	{
+      	ob_start();
+        $data['data_transaksi'] = $this->db->get('transaksi_kas')->result();
+        $this->load->view('admin/laporan/printtransaksi', $data);
+        $html = ob_get_contents();
+          ob_end_clean();
+        
+          require_once('./assets/html2pdf/html2pdf.class.php');
+        $pdf = new HTML2PDF('P','A4','en');
+        $pdf->WriteHTML($html);
+        $pdf->Output('Laporan Data Transaksi.pdf', 'D');
+	}
+}

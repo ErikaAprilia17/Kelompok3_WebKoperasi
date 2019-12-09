@@ -1,0 +1,164 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3>Data
+            <small class="text-muted"> Kas Anggota </small></h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                 <i class="mdi mdi-clock menu icon"></i><div id="clock"></div>
+                <script type="text/javascript">        
+                    function tampilkanwaktu(){         //fungsi ini akan dipanggil di bodyOnLoad dieksekusi tiap 1000ms = 1detik    
+                    var waktu = new Date();            //membuat object date berdasarkan waktu saat 
+                    var sh = waktu.getHours() + "";    //memunculkan nilai jam, //tambahan script + "" supaya variable sh bertipe string sehingga bisa dihitung panjangnya : sh.length    //ambil nilai menit
+                    var sm = waktu.getMinutes() + "";  //memunculkan nilai detik    
+                    var ss = waktu.getSeconds() + "";  //memunculkan jam:menit:detik dengan menambahkan angka 0 jika angkanya cuma satu digit (0-9)
+                    document.getElementById("clock").innerHTML = (sh.length==1?"0"+sh:sh) + ":" + (sm.length==1?"0"+sm:sm) + ":" + (ss.length==1?"0"+ss:ss);
+                    }
+                </script><i class="mdi mdi-calendar menu icon"></i>
+                <!-- /*Menampilkan Waktu*/ -->
+                        <body onload="tampilkanwaktu();setInterval('tampilkanwaktu()', 1000);">        
+                        <span id="clock"></span> 
+               <!--  /*Menampilakan Hari*/ --> 
+                      <?php
+                      $hari = date('l');
+                      /*$new = date('l, F d, Y', strtotime($Today));*/
+                      if ($hari=="Sunday") {
+                       echo "Minggu";
+                      }elseif ($hari=="Monday") {
+                       echo "Senin";
+                      }elseif ($hari=="Tuesday") {
+                       echo "Selasa";
+                      }elseif ($hari=="Wednesday") {
+                       echo "Rabu";
+                      }elseif ($hari=="Thursday") {
+                       echo("Kamis");
+                      }elseif ($hari=="Friday") {
+                       echo "Jum'at";
+                      }elseif ($hari=="Saturday") {
+                       echo "Sabtu";
+                      }
+                      ?>,
+                 <!-- /*Menampilkan Tanggal*/ -->
+                      <?php
+                      $tgl =date('d');
+                      echo $tgl;
+                      $bulan =date('F');
+                      if ($bulan=="January") {
+                       echo " Januari ";
+                      }elseif ($bulan=="February") {
+                       echo " Februari ";
+                      }elseif ($bulan=="March") {
+                       echo " Maret ";
+                      }elseif ($bulan=="April") {
+                       echo " April ";
+                      }elseif ($bulan=="May") {
+                       echo " Mei ";
+                      }elseif ($bulan=="June") {
+                       echo " Juni ";
+                      }elseif ($bulan=="July") {
+                       echo " Juli ";
+                      }elseif ($bulan=="August") {
+                       echo " Agustus ";
+                      }elseif ($bulan=="September") {
+                       echo " September ";
+                      }elseif ($bulan=="October") {
+                       echo " Oktober ";
+                      }elseif ($bulan=="November") {
+                       echo " November ";
+                      }elseif ($bulan=="December") {
+                       echo " Desember ";
+                      }
+                      $tahun=date('Y');
+                      echo $tahun;
+                      ?>
+                    
+            </nav>
+          </div>
+          </ol>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="box">
+                  <div class="box-header">
+                     <a href="<?php echo base_url()?>admin/laporan/kas_anggota/cetak" class="btn btn-gradient-info btn-md"><i class="mdi mdi-printer btn-icon-append">Cetak Data</i></a> 
+              </div> 
+                        </div> 
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Photo </th>
+                        <th width="200px">Identitas</th>
+                        <th width="200px">Saldo Simpanan </th>
+                        <th width="200px">Tagihan Kredit </th>
+                        <th width="200px">Keterangan </th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                           $no = 1;
+                          foreach($kas_anggota as $kas_anggota){ 
+                                        ?>
+                              <tr>
+                          <td><?php echo $no++ ?></td>
+                          <td><?php echo $kas_anggota->foto?></td>
+                          <td>
+                            ID Anggota    : <?php echo $kas_anggota->id ?>
+                            <br>
+                            Nama          : <?php echo $kas_anggota->nama ?>
+                            <br>
+                          Jenis Kelamin : <?php echo $kas_anggota->jenis_kelamin ?>
+                          <br>
+                            Jabatan       : <?php echo $kas_anggota->jabatan?>
+                            <br>
+                            Alamat        : <?php echo $kas_anggota->alamat ?>
+                            <br>
+                            Telpon        : <?php echo $kas_anggota->telpon ?>
+                            <br>
+                            </td>  
+                            <br>              
+                          <td>
+                            Simpanan Sukarela : <?php echo $kas_anggota->simpanan_sukarela ?>
+                            <br>
+                            Simpanan Pokok    : <?php echo $kas_anggota->simpanan_pokok ?>
+                            <br>
+                            Simpanan Wajib    : <?php echo $kas_anggota->simpanan_wajib ?>
+                            <br>
+                            Jumlah Simapanan  : <?php echo $kas_anggota->jumlah_simpanan?>
+                            <br>
+                            </td>
+<br>
+                             <td>
+                            Pokok Pinjaman : <?php echo $kas_anggota->pokok_pinjaman ?>
+                            <br>
+                            Tagihan dan Denda    : <?php echo $kas_anggota->tagihan?>
+                            <br>
+                            Dibayar   : <?php echo $kas_anggota->dibayar ?>
+                            <br>
+                            Sisa Tagihan  : <?php echo $kas_anggota->sisa_tagihan?>
+                            <br>
+                           
+                            </td>
+                             <td>
+                            Jumlah Pinjaman : <?php echo $kas_anggota->pokok_pinjaman ?>
+                            <br>
+                            Pinjaman Lunas   : <?php echo $kas_anggota->tagihan?>
+                            <br>
+                            Pembayaran  Macet  : <?php echo $kas_anggota->dibayar ?>
+                            <br>
+                            Tanggal Tempo  : <?php echo $kas_anggota->sisa_tagihan?>
+                            <br>
+                          </td>
+   
+
+                          </tr>
+                          <?php } ?>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </body>

@@ -1,0 +1,103 @@
+<?php
+class setoran_tunai extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Setoran Tunai',
+			'page' => 'admin/simpanan/v_setoran_tunai',
+			'setoran' => $this->db->get('setoran_tunai')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+	function edit($id){
+		$data = array(
+			'title' => 'Edit Setoran Tunai',
+			'page' => 'admin/simpanan/v_edit_setoran',
+			'setoran' => $this->db->where('id',$id)->get('setoran_tunai')->row(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	
+	function update(){
+		$id = $this->input->post('id');
+		$kode_transaksi = $this->input->post('kode_transaksi');
+		$tgl_transaksi = $this->input->post('tgl_transaksi');
+		$id_anggota = $this->input->post('id_anggota');
+		$nama_anggota = $this->input->post('nama_anggota');
+		$dept = $this->input->post('dept');
+		$jenis_simpanan = $this->input->post('jenis_simpanan');
+		$jumlah = $this->input->post('jumlah');
+		$user = $this->input->post('user');
+		
+		$data = array(
+			'kode_transaksi' => $kode_transaksi,
+			'tgl_transaksi' => $tgl_transaksi,
+			'id_anggota' => $id_anggota,
+			'nama_anggota' => $nama_anggota,
+			'dept' => $dept,
+			'jenis_simpanan' => $jenis_simpanan,
+			'jumlah' => $jumlah,
+			'user' => $user,
+
+		);
+
+		$where = array(
+		'id' => $id
+		);
+ 
+		$this->db->where($where);
+		$this->db->update('setoran_tunai',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('admin/simpanan/setoran_tunai');
+	}
+	function insert(){
+		$kode_transaksi = $this->input->post('kode_transaksi');
+		$tgl_transaksi = $this->input->post('tgl_transaksi');
+		$id_anggota = $this->input->post('id_anggota');
+		$nama_anggota = $this->input->post('nama_anggota');
+		$dept = $this->input->post('dept');
+		$jenis_simpanan = $this->input->post('jenis_simpanan');
+		$jumlah = $this->input->post('jumlah');
+		$user = $this->input->post('user');
+
+		
+		$data = array(
+			'kode_transaksi' => $kode_transaksi,
+			'tgl_transaksi' => $tgl_transaksi,
+			'id_anggota' => $id_anggota,
+			'nama_anggota' => $nama_anggota,
+			'dept' => $dept,
+			'jenis_simpanan' => $jenis_simpanan,
+			'jumlah' => $jumlah,
+			'user' => $user,
+
+		);
+
+		$insert=$this->db->insert('setoran_tunai',$data);
+		$this->session->set_flashdata('success_tambah','a');
+		redirect('admin/simpanan/setoran_tunai');
+	}
+	function tambah(){
+		$data = array(
+			'title' => 'Tambah Data Pengguna',
+			'page' => 'admin/simpanan/v_tambah_setoran',
+			'id_anggota' => $this->db->get('data_anggota')->row(),
+
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+
+	 function hapus($id){
+ 
+  		$this->db->where('id', $id);
+  		$this->db->delete('setoran_tunai');
+  		$this->session->set_flashdata('success_hapus','a'); 
+  		redirect('admin/simpanan/setoran_tunai');
+ }
+
+	}

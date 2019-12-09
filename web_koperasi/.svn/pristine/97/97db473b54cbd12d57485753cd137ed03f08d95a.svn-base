@@ -1,0 +1,103 @@
+<?php if($this->session->flashdata('success_tambah')){ ?>
+  <script> 
+                Swal.fire(
+                  'Success . . . !',
+                  'Data Berhasil Disimpan',
+                  'Thank You',
+                )
+            </script>  
+              <?php } ?> 
+<?php if($this->session->flashdata('success_hapus')){ ?>
+    <script> 
+      Swal.fire(
+                'Success....!',
+                'Data Berhasil di Hapus',
+                'Thank You',
+              )
+</script>
+<?php } ?> 
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title"><center>
+            Transaksi Penarikan Tunai
+            </center></h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Data Penarikan Tunai</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Simpanan</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                 <div class="box">
+                  <div class="box-header">
+                  <a href="<?php echo base_url()?>admin/simpanan/penarikan_tunai/tambah" class="btn btn-gradient-primary btn-icon-text"><i class="mdi mdi-plus-circle-outline menu icon ">Tambah Penarikan</i></a>
+                  <button type="button" class="btn btn-gradient-info btn-icon-text" onclick="cetak()">Print<i class="mdi mdi-printer btn-icon-append"></i></button>
+              </div> 
+                </div>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Kode Transaksi </th>
+                        <th>Tanggal Transaksi</th>
+                        <th>Nama Anggota </th>
+                        <th>Departement</th>
+                       	<th>Jenis Penarikan</th>
+                        <th>Jumlah </th>
+                        <th>User </th>
+                        <th>Opsi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                           $id = 1;
+                          if(is_array($data_penarikan))
+                          foreach($data_penarikan as $penarikan_tunai){ 
+                                        ?>
+                              <tr>
+                          <td><?php echo $id++ ?></td>
+                          <td><?php echo $penarikan_tunai->kode_transaksi ?></td>
+                          <td><?php echo $penarikan_tunai->tanggal_transaksi ?></td>
+                           <td><?php echo $penarikan_tunai->nama_anggota ?></td>
+-                          <td><?php echo $penarikan_tunai->departemen ?></td>
+-                          <td><?php echo $penarikan_tunai->jenis_simpanan ?></td>
+-                          <td><?php echo $penarikan_tunai->jumlah ?></td>
+-                          <td><?php echo $penarikan_tunai->user ?></td>
+
+                           <td>
+                             
+                             	<i class="mdi mdi-pencil-box menu-icon"><?php echo anchor('admin/simpanan/penarikan_tunai/edit/'.$penarikan_tunai->id,'Edit'); ?>
+                             	 </i>
+                           </td>
+
+                              <td>
+                              <i class="mdi mdi-delete menu-icon"><?php echo anchor('admin/simpanan/penarikan_tunai/hapus/'.$penarikan_tunai->id,'Hapus'); ?>
+                              	
+                              </i>
+                            </td>
+                           
+                            </tr>
+
+                                                   <?php } ?>
+                    </tbody>                             
+                  </table>
+
+    
+  
+                   <script>
+                   	function cetak(){
+												window.load = print_d();
+												function print_d(){
+													window.print();
+												}
+											}
+											</script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

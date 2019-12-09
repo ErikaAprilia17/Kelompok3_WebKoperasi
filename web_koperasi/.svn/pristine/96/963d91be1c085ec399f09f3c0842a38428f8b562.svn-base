@@ -1,0 +1,16 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class bayar_angsuran extends CI_Controller 
+{	
+	public function index()
+	{
+		
+		$data = array(
+			'title' => 'Bayar Angsuran',
+			'page' => 'admin/pinjaman/v_bayar_angsuran',
+			'data_angsuran' => $this->db->get('bayar_angsuran')->result(),
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+}

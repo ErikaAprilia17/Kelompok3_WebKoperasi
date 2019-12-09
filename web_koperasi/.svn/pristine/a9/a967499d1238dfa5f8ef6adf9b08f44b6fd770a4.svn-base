@@ -1,0 +1,53 @@
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title"><center>
+             Data Pengajuan
+            </center></h3>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID Ajuan </th>
+                        <th>Tanggal Pengajuan </th>
+                        <th>Anggota </th>
+                        <th>Jenis</th>
+                        <th>Jumlah</th>
+                        <th>Bln </th>
+                        <th>Keterangan </th>
+                        <th>Status</th>
+                        <th>Sisa Pinjaman</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>                        
+                    <?php 
+                    foreach($data_simpanan as $data_pengajuan){ 
+                    ?>
+                    <tr>
+                    <td><?php echo $data_pengajuan->id_ajuan?></td>
+                    <td><?php echo $data_pengajuan->tanggal_pengajuan ?></td>
+                    <td><?php echo $data_pengajuan->anggota ?></td>
+                    <td><?php echo $data_pengajuan->jenis ?></td>
+                    <td><?php echo $data_pengajuan->jumlah ?></td>
+                    <td><?php echo $data_pengajuan->bln ?></td>
+                    <td><?php echo $data_pengajuan->keterangan ?></td>
+                    <td><?php echo $data_pengajuan->status ?></td>
+                    <td><?php echo $data_pengajuan->sisa_pinjaman ?></td>
+                    <td><?php echo $data_pengajuan->aksi ?></td>
+                    </td>
+                    </tr>
+                    <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+

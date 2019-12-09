@@ -1,0 +1,15 @@
+<?php
+class kas_anggota extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'Kas Anggota',
+			'page' => 'admin/laporan/v_kas_anggota',
+			'kas_anggota' => $this->db->get('kas_anggota')->result(),
+			
+		);
+		$this->load->view('admin/layout/template',$data);
+		
+	}
+}
