@@ -1,0 +1,14 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class jenis_akun extends CI_Controller {
+
+	public function index()
+	{
+		$data = array(
+			'title' => 'jenis_akun',
+			'page' => 'admin/master_data/v_jenis_akun'
+		);
+		$this->load->view('admin/layout/template',$data);
+	}
+}
